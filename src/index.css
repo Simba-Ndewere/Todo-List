@@ -1,0 +1,18 @@
+body {
+    background-color: white;
+    border: solid;
+    border-color: green;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: solid;
+    border-color: yellow;
+    max-width: 70%;
+    margin: auto;
+}
