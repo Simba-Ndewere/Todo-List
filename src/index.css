@@ -22,6 +22,35 @@ html, body {
     width: 25%;
     background-color: white;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+nav {
+    padding: 30px;
+}
+
+ul {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0;   
+}
+
+li {
+    margin: 5px 0;   
+    transition: background-color 0.3s, color 0.3s;
+}
+
+li:hover {
+    color: #001f3f;               
+    cursor: pointer;     
+    font-size: 25px;      
 }
 
 .right {
@@ -33,15 +62,25 @@ html, body {
     flex-direction: column;
 }
 
+.projects {
+    display: flex;
+    flex-direction: column;
+}
+
 .top {
-    border: 5px solid green;
     display: flex;
     flex: 1;
     justify-content: center;
 }
 
+.top h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    font-size: 38px;
+}
+
 .bottom {
-    border: 5px solid yellow;
+    border: 2px solid yellow;
     display: flex;
     flex: 10;
 }
