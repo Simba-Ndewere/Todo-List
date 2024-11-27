@@ -1,7 +1,5 @@
 body {
     background-color: white;
-    border: solid;
-    border-color: green;
 }
 
 html, body {
@@ -11,8 +9,39 @@ html, body {
 }
 
 .container {
-    border: solid;
-    border-color: yellow;
     max-width: 70%;
     margin: auto;
+    display: flex;
+    margin-top: 40px;
+    min-height: 80%;
+    border-radius: 20px;
+    border: 5px solid #987eff;
+}
+
+.left {
+    width: 25%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.right {
+    flex-grow: 1;
+    background-color: #a18aff;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    border: 5px solid green;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.bottom {
+    border: 5px solid yellow;
+    display: flex;
+    flex: 10;
 }
