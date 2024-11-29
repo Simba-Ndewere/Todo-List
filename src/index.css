@@ -48,7 +48,7 @@ li {
 }
 
 li:hover {
-    color: #001f3f;               
+    color: #987eff;               
     cursor: pointer;     
     font-size: 25px;      
 }
@@ -80,7 +80,34 @@ li:hover {
 }
 
 .bottom {
-    border: 2px solid yellow;
+   
     display: flex;
     flex: 10;
 }
+
+/* Tablet design */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 100%;
+        display: flex;
+        min-height: 100%;
+        margin: 0px;
+        border-radius: 20px;
+        border: 5px solid #987eff;
+        border-radius: 0px;
+    }
+
+    .right {
+        border-top-right-radius: 0%;
+        border-bottom-right-radius: 0px;
+    }
+
+}
+
+/* Mobile design */
+@media (max-width: 767px) {
+    body {
+        background-color: lightcoral;
+    }
+}
+
