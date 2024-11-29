@@ -73,17 +73,94 @@ li:hover {
     justify-content: center;
 }
 
-.top h1 {
+.title {
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     font-size: 38px;
+    flex: 12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-check {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom {
-   
     display: flex;
     flex: 10;
 }
+
+.slide {
+    max-width: 200px;
+    position: absolute;
+    background-color: white;
+    transition: 0.5s ease;
+    min-height: 100%;
+}
+
+input {
+    display: none;
+    visibility: hidden;
+    -webkit-appearance: none;
+
+}
+
+.toggle {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.toggle .common {
+    position: absolute;
+    height: 2px;
+    width: 20px;
+    border-radius: 50px;
+    background-color: #987eff;
+    transition: 0.3s ease;
+}
+
+.toggle .top_line {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle .middle_line {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle .bottom_line {
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input:checked ~ .toggle .top_line {
+    left: 2px;
+    top: 14px;
+    width: 25px;
+    transform: rotate(45deg);
+  }
+  
+  input:checked ~ .toggle .bottom_line {
+    left: 2px;
+    top: 14px;
+    width: 25px;
+    transform: rotate(-45deg);
+  }
 
 /* Tablet design */
 @media (max-width: 1280px) {
@@ -106,8 +183,24 @@ li:hover {
 
 /* Mobile design */
 @media (max-width: 767px) {
+    .container {
+        max-width: 100%;
+        display: flex;
+        min-height: 100%;
+        margin: 0px;
+        border-radius: 20px;
+        border: 5px solid #987eff;
+        border-radius: 0px;
+    }
+
+    .right {
+        border-top-right-radius: 0%;
+        border-bottom-right-radius: 0px;
+
+    }
+
     body {
-        background-color: lightcoral;
+        background-color: red;
     }
 }
 
