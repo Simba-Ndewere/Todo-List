@@ -28,12 +28,16 @@ body {
 }
 
 nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding-top: 100px;
+    padding-left: 50px;
+    font-size: 22px;
 }
 
 ul {
     font-family: 'Quicksand', sans-serif;
-    font-size: 22px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -64,6 +68,7 @@ li:hover {
     font-size: 25px;
 }
 
+
 .right {
     flex-grow: 1;
     background-color: #a18aff;
@@ -76,7 +81,6 @@ li:hover {
 .top {
     display: flex;
     flex: 1;
-    justify-content: center;
 }
 
 .title {
@@ -116,7 +120,7 @@ input {
     position: absolute;
     height: 30px;
     width: 30px;
-    top: 35px;
+    top: 10px;
     display: none;
     left: 25px;
     z-index: 1;
@@ -178,6 +182,7 @@ input:checked~.slide {
     opacity: 1;
 }
 
+
 /* Tablet design */
 @media (max-width: 1280px) {
     .container {
@@ -195,21 +200,29 @@ input:checked~.slide {
         border-bottom-right-radius: 0px;
     }
 
+    nav {
+        padding-left: 40px;
+    }
 }
 
 /* Mobile design */
 @media (max-width: 767px) {
 
     ul {
-        font-size: 15px;
+        font-size: 18px;
     }
 
+    .projects {
+        font-size: 18px;
+    }
+    
     li:hover {
-        font-size: 17px;
+        font-size: 20px;
     }
 
     .left {
         display: none;
+        opacity: 0;
     }
 
     .slide {
@@ -224,4 +237,8 @@ input:checked~.slide {
         display: block;
     }
 
+    .title {
+        justify-content: end;
+        align-items: start;
+    }
 }
