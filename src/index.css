@@ -120,7 +120,7 @@ input {
     position: absolute;
     height: 30px;
     width: 30px;
-    top: 10px;
+    top: 5px;
     display: none;
     left: 25px;
     z-index: 1;
@@ -241,4 +241,9 @@ input:checked~.slide {
         justify-content: end;
         align-items: start;
     }
+}
+
+html {
+    visibility: visible;
+    opacity: 1;
 }
