@@ -96,6 +96,7 @@ li:hover {
 .bottom {
     display: flex;
     flex: 10;
+    border: solid 3px red ;
 }
 
 .slide {
@@ -240,6 +241,7 @@ input:checked~.slide {
     .title {
         justify-content: end;
         align-items: start;
+        padding-right: 20px;
     }
 }
 
