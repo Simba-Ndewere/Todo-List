@@ -11,4 +11,3 @@ import createTodo from "./todoDom";
 const todo1 = new Todo("odin project", "entire course", "12/23/2024", "Medium", false);
 console.log(todo1);
 createTodo(todo1);
-createTodo(todo1);
