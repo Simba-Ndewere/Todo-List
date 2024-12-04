@@ -4,7 +4,7 @@ import createTodo from "./todoDom";
 
 //create todos, 
 //edit todos,
-//change dom
+//mark to do as finished
 //save to local storage
 //view todo's
 

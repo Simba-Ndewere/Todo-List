@@ -1,47 +1,45 @@
 const bottom = document.querySelector(".bottom");
 
 const createTodo = (todo) => {
-    const todoContainer = document.createElement("div");
-    todoContainer.classList.add("todoContainer");
-    bottom.appendChild(todoContainer);
+  const todoContainer = document.createElement("div");
+  todoContainer.classList.add("todoContainer");
+  bottom.appendChild(todoContainer);
 
-    const title = document.createElement("div");
-    title.textContent = todo.title.toUpperCase();
+  const title = document.createElement("div");
+  title.textContent = todo.title.toUpperCase();
 
-    const date = document.createElement("div");
-    date.textContent = todo.dueDate.toUpperCase();
+  const date = document.createElement("div");
+  date.textContent = todo.dueDate.toUpperCase();
 
-    const leftSide = document.createElement("div");
-    leftSide.classList.add("leftSide");
+  const leftSide = document.createElement("div");
+  leftSide.classList.add("leftSide");
 
-    const rightSide = document.createElement("div");
-    rightSide.classList.add("rightSide");
+  const rightSide = document.createElement("div");
+  rightSide.classList.add("rightSide");
 
-    todoContainer.appendChild(leftSide);
-    todoContainer.appendChild(rightSide);
+  todoContainer.appendChild(leftSide);
+  todoContainer.appendChild(rightSide);
 
-    const priority = document.createElement("div");
-    priority.classList.add("priority");
+  const priority = document.createElement("div");
+  priority.classList.add("priority");
 
-    //<label class="containerCheck">
-      //  <input type="checkbox">
-        //    <span class="checkmark"></span>
-    //</label>
+  const checkLabel = document.createElement("label");
+  checkLabel.classList.add("containerCheck");
 
-    const checkLabel = document.createElement("label");
-    checkLabel.classList.add("containerCheck");
-    const checkInput = document.createElement("input");    
-    checkInput.setAttribute("type", "checkbox");
-    const checkSpan = document.createElement("span");
-    checkSpan.classList.add("checkmark");
-    checkLabel.appendChild(checkInput);
-    checkLabel.appendChild(checkSpan);
+  const checkInput = document.createElement("input");
+  checkInput.setAttribute("type", "checkbox");
 
-    leftSide.appendChild(checkLabel);
-    leftSide.appendChild(title);
+  const checkSpan = document.createElement("span");
+  checkSpan.classList.add("checkmark");
 
-    rightSide.appendChild(date);
-    rightSide.appendChild(priority);
+  checkLabel.appendChild(checkInput);
+  checkLabel.appendChild(checkSpan);
+
+  leftSide.appendChild(checkLabel);
+  leftSide.appendChild(title);
+
+  rightSide.appendChild(date);
+  rightSide.appendChild(priority);
 }
 
 export default createTodo;
