@@ -144,10 +144,12 @@ li:hover {
     opacity: 0;
 }
 
-input {
+input[type="checkbox"],
+input[type="radio"] {
     display: none;
     -webkit-appearance: none;
 }
+
 
 .toggle {
     position: absolute;
@@ -296,6 +298,23 @@ input:checked~.slide {
 .sold-out {
     text-decoration: line-through;
 }
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    background-color: white;
+    border: solid red 2px;
+    transition: 0.8s;
+}
+
+.box {
+    position: relative;
+    border-radius: 12px;
+    max-width: 300px;
+}
+
 
 /* Tablet design */
 @media (max-width: 1280px) {
