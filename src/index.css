@@ -77,15 +77,6 @@ li:hover {
     font-size: 25px;
 }
 
-.right {
-    flex-grow: 1;
-    background-color: #a18aff;
-    border-top-right-radius: 13px;
-    border-bottom-right-radius: 13px;
-    display: flex;
-    flex-direction: column;
-}
-
 .top {
     display: flex;
     flex: 1;
@@ -300,19 +291,25 @@ input:checked~.slide {
 }
 
 .modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Quicksand', sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 2px red;
     background-color: white;
-    border: solid red 2px;
-    transition: 0.8s;
+}
+
+.right {
+    flex-grow: 1;
+    background-color: #a18aff;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .box {
-    position: relative;
-    border-radius: 12px;
-    max-width: 300px;
 }
 
 
@@ -336,6 +333,7 @@ input:checked~.slide {
     nav {
         padding-left: 40px;
     }
+
 }
 
 /* Mobile design */
@@ -384,6 +382,10 @@ input:checked~.slide {
     .name-sign {
         font-size: 20px;
         width: 95%;
+    }
+
+    .modal-container{
+        width: 80%;
     }
 }
 
