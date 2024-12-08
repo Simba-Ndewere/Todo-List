@@ -1,6 +1,7 @@
 const bottom = document.querySelector(".bottom");
 
 const createTodo = (todo) => {
+  console.log(todo);
   const todoContainer = document.createElement("div");
   todoContainer.classList.add("todoContainer");
   bottom.appendChild(todoContainer);
@@ -9,7 +10,7 @@ const createTodo = (todo) => {
   title.textContent = todo.title.toUpperCase();
 
   const date = document.createElement("div");
-  date.textContent = todo.dueDate.toUpperCase();
+  date.textContent = todo.dueDate;
 
   const leftSide = document.createElement("div");
   leftSide.classList.add("leftSide");
@@ -23,6 +24,18 @@ const createTodo = (todo) => {
   const priorityTodo = document.createElement("div");
   priorityTodo.classList.add("priorityTodo");
 
+  if(todo.priority == "low"){
+    priorityTodo.style.backgroundColor = "green";
+  }
+
+  if(todo.priority == "medium"){
+    priorityTodo.style.backgroundColor = "orange";
+  }
+
+  if(todo.priority == "high"){
+    priorityTodo.style.backgroundColor = "red";
+  }
+  
   const checkLabel = document.createElement("label");
   checkLabel.classList.add("containerCheck");
 

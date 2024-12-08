@@ -16,7 +16,7 @@ body {
     margin-top: 40px;
     min-height: 80%;
     border-radius: 20px;
-    border: 5px solid #B9DFC8;
+    border: 5px solid #40bcd8;
 }
 
 .left {
@@ -234,7 +234,6 @@ input:checked~.slide {
 
 .priorityTodo {
     border-radius: 50px;
-    background-color: green;
     height: 18px;
     width: 18px;
 }
@@ -296,15 +295,23 @@ input:checked~.slide {
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    border: solid 5px #B9DFC8;
-    width: 60%;
+    border: solid 2px #40bcd8;
+    width: 40%;
     min-height: 70%;
     font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 20px 30px rgb(0 0 0 / 0.25);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.showModal {
+    opacity: 1;
+    pointer-events:visible;
 }
 
 .right {
     flex-grow: 1;
-    background-color: #B9DFC8;
+    background-color: #40bcd8;
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
     display: flex;
@@ -325,6 +332,7 @@ input:checked~.slide {
     right: 0;
     color: tomato;
     font-size: 34px;
+    padding-left: 15px;
 }
 
 .close:hover {
@@ -360,8 +368,8 @@ input:checked~.slide {
 }
 
 .priority-details .category .dot{
-    height: 10px;
-    width: 10px;
+    height: 18px;
+    width: 18px;
     background: lightgray;
     margin-right: 10px;
     border-radius: 50%;
@@ -389,8 +397,7 @@ input:checked~.slide {
     flex: 1;
     margin: 14px 0;
     gap: 20px;
-    color: black;
-    
+    color: black;   
 }
 
 div span.priority {
@@ -406,7 +413,7 @@ div span.priority {
     width: 25%;
     height: 35px;
     font-size: 18px;
-    background-color: #B9DFC8;
+    background-color: #40bcd8;
     border: 0px;
 }
 
