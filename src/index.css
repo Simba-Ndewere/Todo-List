@@ -304,6 +304,20 @@ input:checked~.slide {
     pointer-events: none;
 }
 
+.project-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: solid 2px #40bcd8;
+    width: 40%;
+    min-height: 30%;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 20px 30px rgb(0 0 0 / 0.25);
+    opacity: 0;
+    pointer-events: none;
+}
 .showModal {
     opacity: 1;
     pointer-events:visible;
@@ -320,7 +334,7 @@ input:checked~.slide {
 }
 
 .box {
-    padding: 18px;
+    padding: 10px;
     margin: 0 auto;
 }
 
@@ -433,6 +447,23 @@ div span.priority {
 .error {
     color: red;
     font-size: 15px;
+}
+
+.closeProject {
+    display: block;
+    position: absolute;
+    width: 40px;
+    top: 0;
+    right: 0;
+    color: tomato;
+    font-size: 34px;
+    padding-left: 15px;
+}
+
+.closeProject:hover {
+    background-color: red;
+    color: #fcfcfc;
+    cursor: pointer;
 }
 
 /* Tablet design */

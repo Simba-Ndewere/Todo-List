@@ -24,7 +24,7 @@
                     <div class="projects-sign">
                         <section class="project-name">PROJECTS</section>
                         <div class="sign">
-                            <img src="./add.png">
+                            <img class="projectCreate" src="./add.png">
                         </div>
                     </div>
                 </section>
@@ -81,7 +81,7 @@
                             <input type="text" name="description" class="todo-description" required="required">
                         </div>
                         <div>
-                            <label class="details" for="todo-date">Due Date</label>
+                            <label class="details" for="todo-date">Due date</label>
                             <input type="date" name = "date" class="todo-date" required="required">
                         </div>
                         <div class="priority-details">
@@ -104,6 +104,21 @@
                                     <span class="priority">High</span>
                                 </label>
                             </div>
+                        </div>
+                        <button type="submit" class="btnSubmit">Submit</button>
+                    </div>
+                </section>
+            </form>
+
+            <form class="project-container">
+                <section class="box">
+                    <div class="modal-title">CREATE PROJECT</div>
+                    <div class="closeProject">&times;</div>
+
+                    <div class="modal-box">
+                        <div>
+                            <label class="details" for="todo-title">Name</label>
+                            <input type="text" name="project-name" class="project-name" required="required">
                         </div>
                         <button type="submit" class="btnSubmit">Submit</button>
                     </div>
