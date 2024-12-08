@@ -1,6 +1,6 @@
 import "./index.css";
 import Todo from "./todo";
-import createTodo from "./todoDom";
+import Dom from "./dom";
 
 //create todos, 
 //edit todos,
@@ -9,10 +9,10 @@ import createTodo from "./todoDom";
 //view todo's
 //validate form submission
 
-
+const dom = new Dom();
 const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high");
 console.log(todo1);
-createTodo(todo1);
+dom.createTodo(todo1);
 
 const modal = document.querySelector(".modal-container");
 const addToDo = document.querySelector(".signCreate");
@@ -66,14 +66,19 @@ form.addEventListener('submit', e => {
     } else {
         error.innerText = "";    
         let data = new FormData(e.target);
-        const todo = data.get("todo");
-        const description = data.get("description");
-        const date = data.get("date");
-        const createdTodo = new Todo(todo, description, date, priority);
-        createTodo(createdTodo);
+        const createdTodo = new Todo(data.get("todo"), data.get("description"), data.get("date"), priority);
+        dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");
     }
+});
+
+projectForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let data = new FormData(e.target);
+    dom.createProject(data.get("project-name"));
+    projectForm.reset();
+    projectForm.classList.remove("showModal");
 });
 
 
