@@ -20,8 +20,8 @@ const createTodo = (todo) => {
   todoContainer.appendChild(leftSide);
   todoContainer.appendChild(rightSide);
 
-  const priority = document.createElement("div");
-  priority.classList.add("priority");
+  const priorityTodo = document.createElement("div");
+  priorityTodo.classList.add("priorityTodo");
 
   const checkLabel = document.createElement("label");
   checkLabel.classList.add("containerCheck");
@@ -39,7 +39,7 @@ const createTodo = (todo) => {
   leftSide.appendChild(title);
 
   rightSide.appendChild(date);
-  rightSide.appendChild(priority);
+  rightSide.appendChild(priorityTodo);
 }
 
 export default createTodo;

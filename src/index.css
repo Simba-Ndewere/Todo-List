@@ -16,7 +16,7 @@ body {
     margin-top: 40px;
     min-height: 80%;
     border-radius: 20px;
-    border: 5px solid #987eff;
+    border: 5px solid #B9DFC8;
 }
 
 .left {
@@ -232,7 +232,7 @@ input:checked~.slide {
     align-items: center;
 }
 
-.priority {
+.priorityTodo {
     border-radius: 50px;
     background-color: green;
     height: 18px;
@@ -295,13 +295,16 @@ input:checked~.slide {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: solid 2px red;
     background-color: white;
+    border: solid 5px #B9DFC8;
+    width: 60%;
+    min-height: 70%;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .right {
     flex-grow: 1;
-    background-color: #a18aff;
+    background-color: #B9DFC8;
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
     display: flex;
@@ -310,8 +313,120 @@ input:checked~.slide {
 }
 
 .box {
+    padding: 18px;
+    margin: 0 auto;
 }
 
+.close {
+    display: block;
+    position: absolute;
+    width: 40px;
+    top: 0;
+    right: 0;
+    color: tomato;
+    font-size: 34px;
+}
+
+.close:hover {
+    background-color: red;
+    color: #fcfcfc;
+    cursor: pointer;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 5%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+.modal-box input {
+    height: 30px;
+    width: 70%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #1a2e35;
+}
+
+.modal-box .todo-description {
+    height: 60px;
+}
+
+.priority-details .category label{
+    display: flex;
+    align-items: center;
+}
+
+.priority-details .category .dot{
+    height: 10px;
+    width: 10px;
+    background: lightgray;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#dot-3:checked ~ .category label .three{
+    border-color: lightgray;
+    background: red;
+}
+
+#dot-2:checked ~ .category label .two{
+    border-color: lightgray;
+    background: orange;
+}
+
+#dot-1:checked ~ .category label .one{
+    border-color: lightgray;
+    background: green;
+}
+
+.priority-details .category{
+    display: flex;
+    flex: 1;
+    margin: 14px 0;
+    gap: 20px;
+    color: black;
+    
+}
+
+div span.priority {
+    font-size: 16px;
+}
+
+.modal-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+}
+
+.btnSubmit {
+    width: 25%;
+    height: 35px;
+    font-size: 18px;
+    background-color: #B9DFC8;
+    border: 0px;
+}
+
+.btnSubmit:hover {
+    width: 26%;
+    height: 36px;
+}
+
+.details {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 17px;
+    color: black;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+}
 
 /* Tablet design */
 @media (max-width: 1280px) {

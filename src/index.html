@@ -66,33 +66,30 @@
                 </div>
             </section>
 
-            <div class="modal-container">
+            <form class="modal-container">
                 <section class="box">
+                    <div class="modal-title">CREATE TODO</div>
                     <div class="close">&times;</div>
-        
-                    <div class="circle">
-                        <span class="modal-head"></span>
-                        <span class="modal-body"></span>
-                    </div>
-        
+
                     <div class="modal-box">
                         <div>
+                            <label class="details" for="todo-title">Todo</label>
                             <input type="text" class="todo-title" required="required">
-                            <label for="todo-title">Todo</label>
                         </div>
                         <div>
+                            <label class="details" for="todo-description">Description</label>
                             <input type="text" class="todo-description" required="required">
-                            <label for="todo-description">Description</label>
                         </div>
                         <div>
+                            <label class="details" for="todo-date">Due Date</label>
                             <input type="date" class="todo-date" required="required">
-                            <label for="todo-date">Due Date</label>
                         </div>
-                        <div>
-                            <input type="radio" name="priority" id="dot-1">
-                            <input type="radio" name="priority" id="dot-2">
-                            <input type="radio" name="priority" id="dot-3">
-                            <span class="priority-title">Priority</span>
+                        <div class="priority-details">
+                            <input type="radio" name="priority-radio" id="dot-1">
+                            <input type="radio" name="priority-radio" id="dot-2">
+                            <input type="radio" name="priority-radio" id="dot-3">
+                            <span class="details">Priority</span>
+                            <div class="error"></div>
                             <div class="category">
                                 <label for="dot-1">
                                     <span class="dot one"></span>
@@ -104,15 +101,16 @@
                                 </label>
                                 <label for="dot-3">
                                     <span class="dot three"></span>
-                                    <span class="priority">Hard</span>
+                                    <span class="priority">High</span>
                                 </label>
                             </div>
                         </div>
-                        <button class="btnSubmit">Submit</button>
+                        <button type="submit" class="btnSubmit">Submit</button>
                     </div>
                 </section>
-            </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>
