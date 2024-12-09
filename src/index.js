@@ -81,6 +81,11 @@ projectForm.addEventListener('submit', e => {
     projectForm.classList.remove("showModal");
 });
 
+document.querySelector('.slide').addEventListener('click', function (event) {
+    console.log("clciked");
+    event.stopPropagation();
+});
+
 
 
 
