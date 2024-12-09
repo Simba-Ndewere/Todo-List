@@ -10,7 +10,7 @@ import Dom from "./dom";
 //validate form submission
 
 const dom = new Dom();
-const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high");
+const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high", "default");
 console.log(todo1);
 dom.createTodo(todo1);
 

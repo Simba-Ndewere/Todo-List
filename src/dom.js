@@ -60,8 +60,25 @@ class Dom {
   createProject = (name) => {
       const projectFolder = document.querySelector(".projects");
       const newProject = document.createElement("div");
-      newProject.textContent = name.toUpperCase();
+      newProject.textContent = "- " + name.toLowerCase();
+
+      newProject.addEventListener('mouseenter', () => {
+        newProject.style.color = "#40bcd8";
+        newProject.style.fontSize = "24px";
+        newProject.style.cursor = "pointer";
+      });
+      
+      newProject.addEventListener('mouseleave', () => {
+        newProject.style.color = 'black';
+        newProject.style.fontSize = "22px";
+        newProject.style.cursor = "none";
+      });
+
       projectFolder.appendChild(newProject);
+  }
+
+  getAllProjects = () => {
+    //get all projects from local storage
   }
 
 }

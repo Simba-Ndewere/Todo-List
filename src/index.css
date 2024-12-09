@@ -58,7 +58,7 @@ ul {
     margin: 0;
 }
 
-.projects-sign{
+.projects-sign {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -72,9 +72,15 @@ li {
 }
 
 li:hover {
-    color: #987eff;
+    color: #40bcd8;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 24px;
+}
+
+.projectHover {
+    color: #40bcd8;
+    cursor: pointer;
+    font-size: 24px;
 }
 
 .top {
@@ -318,9 +324,10 @@ input:checked~.slide {
     opacity: 0;
     pointer-events: none;
 }
+
 .showModal {
     opacity: 1;
-    pointer-events:visible;
+    pointer-events: visible;
 }
 
 .right {
@@ -372,16 +379,25 @@ input:checked~.slide {
     border: 1px solid #1a2e35;
 }
 
+.modal-box select {
+    height: 30px;
+    width: 50%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #1a2e35;
+    background-color: white;
+}
+
 .modal-box .todo-description {
     height: 60px;
 }
 
-.priority-details .category label{
+.priority-details .category label {
     display: flex;
     align-items: center;
 }
 
-.priority-details .category .dot{
+.priority-details .category .dot {
     height: 18px;
     width: 18px;
     background: lightgray;
@@ -391,27 +407,27 @@ input:checked~.slide {
     transition: all 0.3s ease;
 }
 
-#dot-3:checked ~ .category label .three{
+#dot-3:checked~.category label .three {
     border-color: lightgray;
     background: red;
 }
 
-#dot-2:checked ~ .category label .two{
+#dot-2:checked~.category label .two {
     border-color: lightgray;
     background: orange;
 }
 
-#dot-1:checked ~ .category label .one{
+#dot-1:checked~.category label .one {
     border-color: lightgray;
     background: green;
 }
 
-.priority-details .category{
+.priority-details .category {
     display: flex;
     flex: 1;
     margin: 14px 0;
-    gap: 20px;
-    color: black;   
+    gap: 5px;
+    color: black;
 }
 
 div span.priority {
@@ -537,7 +553,7 @@ div span.priority {
         width: 95%;
     }
 
-    .modal-container{
+    .modal-container {
         width: 80%;
     }
 }
