@@ -3,7 +3,7 @@ const bottom = document.querySelector(".bottom");
 class Dom {
 
   createTodo = (todo) => {
-    console.log(todo);
+
     const todoContainer = document.createElement("div");
     todoContainer.classList.add("todoContainer");
     bottom.appendChild(todoContainer);
@@ -50,15 +50,17 @@ class Dom {
     checkLabel.appendChild(checkInput);
     checkLabel.appendChild(checkSpan);
 
-    leftSide.appendChild(checkLabel);
+    leftSide.appendChild(priorityTodo);
     leftSide.appendChild(title);
 
     rightSide.appendChild(date);
-    rightSide.appendChild(priorityTodo);
+    rightSide.appendChild(checkLabel);
   }
 
   createProject = (name) => {
-      const projectFolder = document.querySelector(".projects");
+    const projectFolder = document.querySelectorAll(".projects");
+
+    for (let a = 0; a < projectFolder.length; a++) {
       const newProject = document.createElement("div");
       newProject.textContent = "- " + name.toLowerCase();
 
@@ -67,14 +69,15 @@ class Dom {
         newProject.style.fontSize = "24px";
         newProject.style.cursor = "pointer";
       });
-      
+
       newProject.addEventListener('mouseleave', () => {
         newProject.style.color = 'black';
         newProject.style.fontSize = "22px";
         newProject.style.cursor = "none";
       });
 
-      projectFolder.appendChild(newProject);
+      projectFolder[a].appendChild(newProject);
+    }
   }
 
   getAllProjects = () => {

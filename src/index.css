@@ -34,7 +34,6 @@ nav {
     padding-top: 100px;
     padding-left: 50px;
     font-size: 22px;
-
 }
 
 ul {
@@ -129,14 +128,14 @@ li:hover {
 }
 
 .slide {
-    transform: translateX(-210px);
+    transform: translateX(-260px);
     background-color: white;
     display: flex;
     flex-direction: column;
     height: 100%;
     display: none;
     position: absolute;
-    width: 200px;
+    width: 250px;
     transition: opacity 0.5s ease-in-out;
     opacity: 0;
 }
@@ -144,6 +143,7 @@ li:hover {
 input[type="checkbox"],
 input[type="radio"] {
     display: none;
+    visibility: hidden;
     -webkit-appearance: none;
 }
 
@@ -208,10 +208,11 @@ input:checked~.toggle .middle_line {
     transform: translate(20px)
 }
 
-input:checked~.slide {
+input:checked ~ .slide {
     transform: translateX(0);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     opacity: 1;
+    display: flex;
 }
 
 .todoContainer {
@@ -230,6 +231,8 @@ input:checked~.slide {
 .leftSide {
     display: flex;
     align-items: center;
+    gap: 10px;
+    justify-content: center;
 }
 
 .rightSide {
@@ -242,6 +245,7 @@ input:checked~.slide {
     border-radius: 50px;
     height: 18px;
     width: 18px;
+    margin-bottom: 1px;
 }
 
 .containerCheck {
