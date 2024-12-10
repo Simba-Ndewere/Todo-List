@@ -27,28 +27,24 @@ const closebtn = document.querySelector(".closebtn");
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
-    addToDo.classList.add("unclickable");
-    addProject.classList.add("unclickable");
+    addUnclickable();
 });
 
 addProject.addEventListener('click', function () {
     projectForm.classList.add("showModal");
-    addToDo.classList.add("unclickable");
-    addProject.classList.add("unclickable");
+    addUnclickable();
 });
 
 close.addEventListener('click', function () {
     form.reset();
     modal.classList.remove("showModal");
-    addToDo.classList.remove("unclickable");
-    addProject.classList.remove("unclickable");
+    removeUnclickable();
 });
 
 projectClose.addEventListener('click', function () {
     projectForm.reset();
     projectForm.classList.remove("showModal");
-    addToDo.classList.remove("unclickable");
-    addProject.classList.remove("unclickable");
+    removeUnclickable();
 });
 
 addProjectMobileNav.addEventListener('click', function () {
@@ -86,8 +82,7 @@ form.addEventListener('submit', e => {
         dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");
-        addToDo.classList.remove("unclickable");
-        addProject.classList.remove("unclickable");
+        removeUnclickable();
     }
 });
 
@@ -97,8 +92,7 @@ projectForm.addEventListener('submit', e => {
     dom.createProject(data.get("project-name"));
     projectForm.reset();
     projectForm.classList.remove("showModal");
-    addToDo.classList.remove("unclickable");
-    addProject.classList.remove("unclickable");
+    removeUnclickable();
 });
 
 //when nav icon is clicked
@@ -109,3 +103,13 @@ navMobile.addEventListener('click', function () {
 closebtn.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
 });
+
+const addUnclickable = () => {
+    addToDo.classList.add("unclickable");
+    addProject.classList.add("unclickable");
+}
+
+const removeUnclickable = () => {
+    addToDo.classList.remove("unclickable");
+    addProject.classList.remove("unclickable");
+}

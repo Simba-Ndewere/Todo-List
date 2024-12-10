@@ -433,10 +433,15 @@ div span.priority {
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
-    font-size: 36px;
+    right: 0;
+    font-size: 34px;
     margin-left: 50px;
     cursor: pointer;
+    color: white;
+    background-color: red;
+    width: 40px;
+    display: block;
+    padding-left: 15px;
 }
 
 .projectCreate {
