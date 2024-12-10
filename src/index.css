@@ -479,7 +479,6 @@ div span.priority {
 
 }
 
-/* Mobile design */
 @media (max-width: 767px) {
 
     ul {
@@ -538,6 +537,10 @@ div span.priority {
         padding: 5px;
     }
 
+}
+
+@media (min-width: 768px) {
+    
 }
 
 html {

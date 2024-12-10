@@ -95,7 +95,6 @@ projectForm.addEventListener('submit', e => {
     removeUnclickable();
 });
 
-//when nav icon is clicked
 navMobile.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "350px";
 });
@@ -113,3 +112,9 @@ const removeUnclickable = () => {
     addToDo.classList.remove("unclickable");
     addProject.classList.remove("unclickable");
 }
+
+window.addEventListener("resize", function(){
+    if(window.innerWidth > 768 ){
+        document.querySelector(".sidenav").style.width = "0";   
+    }
+});
