@@ -27,23 +27,31 @@ const closebtn = document.querySelector(".closebtn");
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
+    addToDo.classList.add("unclickable");
+    addProject.classList.add("unclickable");
 });
 
 addProject.addEventListener('click', function () {
     projectForm.classList.add("showModal");
+    addToDo.classList.add("unclickable");
+    addProject.classList.add("unclickable");
 });
 
 close.addEventListener('click', function () {
     form.reset();
     modal.classList.remove("showModal");
+    addToDo.classList.remove("unclickable");
+    addProject.classList.remove("unclickable");
 });
 
 projectClose.addEventListener('click', function () {
     projectForm.reset();
     projectForm.classList.remove("showModal");
+    addToDo.classList.remove("unclickable");
+    addProject.classList.remove("unclickable");
 });
 
-addProjectMobileNav.addEventListener('click', function (){
+addProjectMobileNav.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
     projectForm.classList.add("showModal");
 });
@@ -57,13 +65,13 @@ form.addEventListener('submit', e => {
         const radioButton = document.getElementById("dot-" + a);
         if (radioButton.checked) {
             checked = true;
-            if(a==1)
+            if (a == 1)
                 priority = "low";
 
-            if(a==2)
+            if (a == 2)
                 priority = "medium";
 
-            if(a==3)
+            if (a == 3)
                 priority = "high";
             break;
         }
@@ -72,12 +80,14 @@ form.addEventListener('submit', e => {
     if (!checked) {
         error.innerText = "please enter priority"
     } else {
-        error.innerText = "";    
+        error.innerText = "";
         let data = new FormData(e.target);
         const createdTodo = new Todo(data.get("todo"), data.get("description"), data.get("date"), priority);
         dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");
+        addToDo.classList.remove("unclickable");
+        addProject.classList.remove("unclickable");
     }
 });
 
@@ -87,6 +97,8 @@ projectForm.addEventListener('submit', e => {
     dom.createProject(data.get("project-name"));
     projectForm.reset();
     projectForm.classList.remove("showModal");
+    addToDo.classList.remove("unclickable");
+    addProject.classList.remove("unclickable");
 });
 
 //when nav icon is clicked

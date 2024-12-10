@@ -447,6 +447,10 @@ div span.priority {
     cursor: pointer;
 }
 
+.unclickable {
+    pointer-events: none;
+}
+
 /* Tablet design */
 @media (max-width: 1280px) {
     .container {
@@ -510,6 +514,10 @@ div span.priority {
 
     .modal-container {
         width: 80%;
+    }
+
+    .project-container {
+        width: 60%;
     }
 
     .nav-icon {
