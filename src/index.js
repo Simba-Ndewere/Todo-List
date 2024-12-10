@@ -21,6 +21,9 @@ const projectForm = document.querySelector(".project-container");
 const close = document.querySelector(".close");
 const projectClose = document.querySelector(".closeProject");
 const addProject = document.querySelector(".projectCreate");
+const addProjectMobileNav = document.querySelector(".projectCreateNav");
+const navMobile = document.querySelector(".nav-icon");
+const closebtn = document.querySelector(".closebtn");
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
@@ -38,6 +41,11 @@ close.addEventListener('click', function () {
 projectClose.addEventListener('click', function () {
     projectForm.reset();
     projectForm.classList.remove("showModal");
+});
+
+addProjectMobileNav.addEventListener('click', function (){
+    document.querySelector(".sidenav").style.width = "0";
+    projectForm.classList.add("showModal");
 });
 
 form.addEventListener('submit', e => {
@@ -81,11 +89,11 @@ projectForm.addEventListener('submit', e => {
     projectForm.classList.remove("showModal");
 });
 
-document.querySelector('.slide').addEventListener('click', function (event) {
-    console.log("clciked");
-    event.stopPropagation();
+//when nav icon is clicked
+navMobile.addEventListener('click', function () {
+    document.querySelector(".sidenav").style.width = "350px";
 });
 
-
-
-
+closebtn.addEventListener('click', function () {
+    document.querySelector(".sidenav").style.width = "0";
+});

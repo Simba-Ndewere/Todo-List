@@ -409,6 +409,44 @@ div span.priority {
     display: none;
 }
 
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    border: solid 2px #40bcd8;
+
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 22px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.projectCreate {
+    cursor: pointer;
+}
+
+.projectCreateNav {
+    cursor: pointer;
+}
+
 /* Tablet design */
 @media (max-width: 1280px) {
     .container {
@@ -443,6 +481,10 @@ div span.priority {
         font-size: 18px;
     }
 
+    .slide {
+        width: 350px;
+    }
+
     li:hover {
         font-size: 20px;
     }
@@ -472,6 +514,7 @@ div span.priority {
 
     .nav-icon {
         display: block;
+        cursor: pointer;
     }
 
     .top {
@@ -481,7 +524,7 @@ div span.priority {
         justify-content: space-between;
         padding: 5px;
     }
-    
+
 }
 
 html {
