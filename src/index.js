@@ -50,6 +50,7 @@ projectClose.addEventListener('click', function () {
 addProjectMobileNav.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
     projectForm.classList.add("showModal");
+    addUnclickable();
 });
 
 form.addEventListener('submit', e => {
@@ -106,11 +107,13 @@ closebtn.addEventListener('click', function () {
 const addUnclickable = () => {
     addToDo.classList.add("unclickable");
     addProject.classList.add("unclickable");
+    navMobile.classList.add("unclickable");
 }
 
 const removeUnclickable = () => {
     addToDo.classList.remove("unclickable");
     addProject.classList.remove("unclickable");
+    navMobile.classList.remove("unclickable");
 }
 
 window.addEventListener("resize", function(){
