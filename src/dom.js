@@ -2,7 +2,7 @@ const bottom = document.querySelector(".bottom");
 
 class Dom {
 
-  createTodo = (todo) => {
+  static createTodo = (todo) => {
 
     const todoContainer = document.createElement("div");
     todoContainer.classList.add("todoContainer");
@@ -57,7 +57,7 @@ class Dom {
     rightSide.appendChild(checkLabel);
   }
 
-  createProject = (name) => {
+  static createProject = (name) => {
     const projectFolder = document.querySelectorAll(".projects");
 
     for (let a = 0; a < projectFolder.length; a++) {
@@ -80,7 +80,7 @@ class Dom {
     }
   }
 
-  getAllProjects = () => {
+  static getAllProjects = () => {
     //get all projects from local storage
   }
 

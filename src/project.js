@@ -1,7 +1,7 @@
 class Project {
-    constructor(name, id) {
-        this._name = name;
+    constructor(id, name) {
         this._id = id;
+        this._name = name;
     }
 
     get name() {
@@ -20,3 +20,5 @@ class Project {
         this._id = id;
     }
 }
+
+export default Project;

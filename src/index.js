@@ -1,6 +1,8 @@
 import "./index.css";
 import Todo from "./todo";
 import Dom from "./dom";
+import Project from "./project";
+import Storage from "./localstorage";
 
 //create todos, 
 //edit todos,
@@ -9,10 +11,10 @@ import Dom from "./dom";
 //view todo's
 //validate form submission
 
-const dom = new Dom();
-const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high", "default", false);
+
+const todo1 = new Todo(1, "odin project", "entire course", "2024-12-01", "high", "default", false);
 console.log(todo1);
-dom.createTodo(todo1);
+Dom.createTodo(todo1);
 
 const modal = document.querySelector(".modal-container");
 const addToDo = document.querySelector(".signCreate");
@@ -80,22 +82,29 @@ form.addEventListener('submit', e => {
     } else {
         error.innerText = "";
         let data = new FormData(e.target);
-        const createdTodo = new Todo(data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        let keyCount = localStorage.length;
+        const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        Storage.saveTodo(createdTodo);
         console.log(createdTodo);
-        dom.createTodo(createdTodo);
+        Dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");
         removeUnclickable();
+        console.log(localStorage);
     }
 });
 
 projectForm.addEventListener('submit', e => {
     e.preventDefault();
     let data = new FormData(e.target);
-    dom.createProject(data.get("project-name"));
+    let keyCount = localStorage.length;
+    const createdProject = new Project(keyCount + 1, data.get("project-name"));
+    Storage.saveProject(createdProject);
+    Dom.createProject(createdProject.name);
     projectForm.reset();
     projectForm.classList.remove("showModal");
     removeUnclickable();
+    console.log(localStorage);
 });
 
 navMobile.addEventListener('click', function () {
