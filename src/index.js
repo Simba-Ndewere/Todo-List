@@ -10,7 +10,7 @@ import Dom from "./dom";
 //validate form submission
 
 const dom = new Dom();
-const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high", "default");
+const todo1 = new Todo("odin project", "entire course", "2024-12-01", "high", "default", false);
 console.log(todo1);
 dom.createTodo(todo1);
 
@@ -24,6 +24,7 @@ const addProject = document.querySelector(".projectCreate");
 const addProjectMobileNav = document.querySelector(".projectCreateNav");
 const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
+
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
@@ -79,7 +80,8 @@ form.addEventListener('submit', e => {
     } else {
         error.innerText = "";
         let data = new FormData(e.target);
-        const createdTodo = new Todo(data.get("todo"), data.get("description"), data.get("date"), priority);
+        const createdTodo = new Todo(data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        console.log(createdTodo);
         dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");
@@ -116,8 +118,10 @@ const removeUnclickable = () => {
     navMobile.classList.remove("unclickable");
 }
 
-window.addEventListener("resize", function(){
-    if(window.innerWidth > 768 ){
-        document.querySelector(".sidenav").style.width = "0";   
+window.addEventListener("resize", function () {
+    if (window.innerWidth > 768) {
+        document.querySelector(".sidenav").style.width = "0";
     }
 });
+
+
