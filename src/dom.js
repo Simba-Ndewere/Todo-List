@@ -4,6 +4,7 @@ class Dom {
 
   static createTodo = (todo) => {
 
+    console.log(todo);
     const todoContainer = document.createElement("div");
     todoContainer.classList.add("todoContainer");
     bottom.appendChild(todoContainer);
@@ -57,12 +58,12 @@ class Dom {
     rightSide.appendChild(checkLabel);
   }
 
-  static createProject = (name) => {
+  static createProject = (project) => {
     const projectFolder = document.querySelectorAll(".projects");
 
     for (let a = 0; a < projectFolder.length; a++) {
       const newProject = document.createElement("div");
-      newProject.textContent = "- " + name.toLowerCase();
+      newProject.textContent = "- " + project.name.toLowerCase();
 
       newProject.addEventListener('mouseenter', () => {
         newProject.style.color = "#40bcd8";

@@ -24,8 +24,14 @@ class Storage {
         }
         Storage.sortById(todosArray);
         Storage.sortById(projectsArray);
-        console.log(todosArray);
-        console.log(projectsArray);
+    }
+
+    static getSortedTodoArray = () => {
+        return todosArray;
+    }
+
+    static getSortedProjectsArray = () => {
+        return projectsArray;
     }
 
     static sortById = (arraySort) => {

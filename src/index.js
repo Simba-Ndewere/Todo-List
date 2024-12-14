@@ -24,7 +24,21 @@ const closebtn = document.querySelector(".closebtn");
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
-    //populate dom from returned values
+    const todoArray = Storage.getSortedTodoArray();
+    const projectArray = Storage.getSortedProjectsArray();
+
+    for (let a = 0; a < todoArray.length; a++) {
+        const todoObject = todoArray[a];
+        const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate, 
+            todoObject._priority, todoObject._project, todoObject);
+        Dom.createTodo(todo);
+    }
+
+    for (let a = 0; a < projectArray.length; a++) {
+        const projectObject = projectArray[a];
+        const project = new Project(projectObject._id , projectObject._name);
+        Dom.createProject(project);
+    }
 }
 
 window.onload = loadStorage;
