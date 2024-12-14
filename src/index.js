@@ -4,16 +4,11 @@ import Dom from "./dom";
 import Project from "./project";
 import Storage from "./localstorage";
 
-//create todos, 
 //edit todos,
 //mark to do as finished
-//save to local storage
 //view todo's
-//validate form submission
 
-
-const todo1 = new Todo(1, "odin project", "entire course", "2024-12-01", "high", "default", false);
-console.log(todo1);
+const todo1 = new Todo(0, "odin project", "entire course", "2024-12-01", "high", "default", false);
 Dom.createTodo(todo1);
 
 const modal = document.querySelector(".modal-container");
@@ -27,6 +22,12 @@ const addProjectMobileNav = document.querySelector(".projectCreateNav");
 const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
 
+const loadStorage = () => {
+    Storage.loadLocalStorage();
+    //populate dom from returned values
+}
+
+window.onload = loadStorage;
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
@@ -90,7 +91,6 @@ form.addEventListener('submit', e => {
         form.reset();
         modal.classList.remove("showModal");
         removeUnclickable();
-        console.log(localStorage);
     }
 });
 
@@ -104,7 +104,6 @@ projectForm.addEventListener('submit', e => {
     projectForm.reset();
     projectForm.classList.remove("showModal");
     removeUnclickable();
-    console.log(localStorage);
 });
 
 navMobile.addEventListener('click', function () {

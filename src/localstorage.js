@@ -1,3 +1,6 @@
+const todosArray = [];
+const projectsArray = [];
+
 class Storage {
 
     static saveTodo = (todo) => {
@@ -5,21 +8,28 @@ class Storage {
         localStorage.setItem(todoKey, JSON.stringify(todo));
     }
 
-    static retrieveTodos = (todoKey) => {
-        if(localStorage.getItem(todoKey)){
-
-        }
-    }
-
     static saveProject = (project) => {
         let projectKey = "project-" + project.id;
         localStorage.setItem(projectKey, JSON.stringify(project));
     }
 
-    static retrieveProjects = (projectKey) => {
-        if(localStorage.getItem(projectKey)){
-
+    static loadLocalStorage = () => {
+        for (let a = 0; a < localStorage.length; a++) {
+            const convertedObject = JSON.parse(localStorage.getItem(localStorage.key(a)));
+            if (localStorage.key(a).startsWith("todo")) {
+                todosArray.push(convertedObject);
+            } else {
+                projectsArray.push(convertedObject);
+            }
         }
+        Storage.sortById(todosArray);
+        Storage.sortById(projectsArray);
+        console.log(todosArray);
+        console.log(projectsArray);
+    }
+
+    static sortById = (arraySort) => {
+        arraySort.sort((a, b) => a._id - b._id);
     }
 }
 
