@@ -22,6 +22,7 @@ const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
+const cars = document.querySelector(".cars");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -42,6 +43,13 @@ const loadStorage = () => {
         Dom.createProject(project);
     }
     todoArray.push(todo1);
+
+    for (let a = 0; a < projectArray.length; a++) {
+        const projectOption = document.createElement("option");
+        projectOption.value = projectArray[a]._name;
+        projectOption.textContent = projectArray[a]._name.toLowerCase();
+        cars.appendChild(projectOption);
+    }
 }
 
 window.onload = loadStorage;
@@ -144,18 +152,18 @@ bottom.addEventListener("click", (event) => {
                 const todoDescription = document.querySelector(".todo-description");
                 const todoDate = document.querySelector(".todo-date");
                 const todoProject = document.querySelector(".cars");
-                
-                if(todoArray[a]._priority=='low'){
+
+                if (todoArray[a]._priority == 'low') {
                     const priorityView = document.getElementById("dot-1");
                     priorityView.checked = true;
                 }
 
-                if(todoArray[a]._priority=='medium'){
+                if (todoArray[a]._priority == 'medium') {
                     const priorityView = document.getElementById("dot-2");
                     priorityView.checked = true;
                 }
 
-                if(todoArray[a]._priority=='high'){
+                if (todoArray[a]._priority == 'high') {
                     const priorityView = document.getElementById("dot-3");
                     priorityView.checked = true;
                 }
@@ -164,7 +172,7 @@ bottom.addEventListener("click", (event) => {
                 todoDescription.value = todoArray[a]._description;
                 todoDate.value = todoArray[a]._dueDate;
                 todoProject.value = todoArray[a]._project;
-                
+
             }
         }
     }
