@@ -23,11 +23,12 @@ const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
 
+const todoArray = Storage.getSortedTodoArray();
+const projectArray = Storage.getSortedProjectsArray();
+
 const loadStorage = () => {
     Storage.loadLocalStorage();
-    const todoArray = Storage.getSortedTodoArray();
-    const projectArray = Storage.getSortedProjectsArray();
-
+    console.log(localStorage);
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -40,6 +41,7 @@ const loadStorage = () => {
         const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
     }
+    todoArray.push(todo1);
 }
 
 window.onload = loadStorage;
@@ -115,10 +117,12 @@ projectForm.addEventListener('submit', e => {
     let keyCount = localStorage.length;
     const createdProject = new Project(keyCount + 1, data.get("project-name"));
     Storage.saveProject(createdProject);
-    Dom.createProject(createdProject.name);
+    Dom.createProject(createdProject);
     projectForm.reset();
     projectForm.classList.remove("showModal");
     removeUnclickable();
+
+    Dom.addProjectToDropDown(createdProject);
 });
 
 navMobile.addEventListener('click', function () {
@@ -132,8 +136,37 @@ closebtn.addEventListener('click', function () {
 bottom.addEventListener("click", (event) => {
     if (event.target.classList.contains("openImg")) {
         modal.classList.add("showModal");
-        modalTitle.textContent = "EDIT TODO";
-        addUnclickable();
+        modalTitle.textContent = "VIEW TODO";
+        let todoId = Number(event.target.id.substring(1));
+        for (let a = 0; a < todoArray.length; a++) {
+            if (todoArray[a]._id == todoId) {
+                const todoTitle = document.querySelector(".todo-title");
+                const todoDescription = document.querySelector(".todo-description");
+                const todoDate = document.querySelector(".todo-date");
+                const todoProject = document.querySelector(".cars");
+                
+                if(todoArray[a]._priority=='low'){
+                    const priorityView = document.getElementById("dot-1");
+                    priorityView.checked = true;
+                }
+
+                if(todoArray[a]._priority=='medium'){
+                    const priorityView = document.getElementById("dot-2");
+                    priorityView.checked = true;
+                }
+
+                if(todoArray[a]._priority=='high'){
+                    const priorityView = document.getElementById("dot-3");
+                    priorityView.checked = true;
+                }
+
+                todoTitle.value = todoArray[a]._title;
+                todoDescription.value = todoArray[a]._description;
+                todoDate.value = todoArray[a]._dueDate;
+                todoProject.value = todoArray[a]._project;
+                
+            }
+        }
     }
 });
 

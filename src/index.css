@@ -154,22 +154,22 @@ input[type="radio"] {
 
 .rightSide {
     display: flex;
-    gap: 10px;
+    gap: 30px;
     align-items: center;
 }
 
 .openImg {
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width: 18px;
     margin-right: 2px;
     cursor: pointer;
 }
 
 .priorityTodo {
     border-radius: 50px;
-    height: 18px;
-    width: 18px;
-    margin-bottom: 1px;
+    height: 12px;
+    width: 12px;
+    margin-bottom: 2px;
 }
 
 .containerCheck {
@@ -542,6 +542,12 @@ div span.priority {
         align-items: center;
         justify-content: space-between;
         padding: 5px;
+    }
+
+    .rightSide {
+        display: flex;
+        gap: 10px;
+        align-items: center;
     }
 
 }

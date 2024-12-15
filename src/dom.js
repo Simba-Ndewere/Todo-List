@@ -1,6 +1,7 @@
 import openImage from './open.png'
 
 const bottom = document.querySelector(".bottom");
+const cars = document.querySelector(".cars");
 
 class Dom {
 
@@ -54,6 +55,7 @@ class Dom {
     const openImg = document.createElement("img");
     openImg.classList.add("openImg");
     openImg.src = openImage;
+    openImg.id = "_" + todo.id.toString();
     open.appendChild(openImg);
 
     checkLabel.appendChild(checkInput);
@@ -88,6 +90,13 @@ class Dom {
 
       projectFolder[a].appendChild(newProject);
     }
+  }
+
+  static addProjectToDropDown = (project) => {
+      const projectOption = document.createElement("option");
+      projectOption.value = project.name;
+      projectOption.textContent = project.name;
+      cars.appendChild(projectOption);
   }
 
   static getAllProjects = () => {
