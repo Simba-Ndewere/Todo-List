@@ -158,6 +158,13 @@ input[type="radio"] {
     align-items: center;
 }
 
+.openImg {
+    height: 22px;
+    width: 22px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
 .priorityTodo {
     border-radius: 50px;
     height: 18px;
@@ -539,9 +546,6 @@ div span.priority {
 
 }
 
-@media (min-width: 768px) {
-    
-}
 
 html {
     visibility: visible;

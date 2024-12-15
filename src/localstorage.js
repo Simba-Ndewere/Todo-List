@@ -35,7 +35,7 @@ class Storage {
     }
 
     static sortById = (arraySort) => {
-        arraySort.sort((a, b) => a._id - b._id);
+        arraySort.sort((a, b) => b._id - a._id);
     }
 }
 

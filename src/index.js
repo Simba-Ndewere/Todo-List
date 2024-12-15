@@ -100,7 +100,6 @@ form.addEventListener('submit', e => {
         let keyCount = localStorage.length;
         const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
         Storage.saveTodo(createdTodo);
-        console.log(createdTodo);
         Dom.createTodo(createdTodo);
         form.reset();
         modal.classList.remove("showModal");

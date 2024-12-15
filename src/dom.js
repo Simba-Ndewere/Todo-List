@@ -1,20 +1,21 @@
+import openImage from './open.png'
+
 const bottom = document.querySelector(".bottom");
 
 class Dom {
 
   static createTodo = (todo) => {
 
-    console.log(todo);
     const todoContainer = document.createElement("div");
     todoContainer.classList.add("todoContainer");
     bottom.appendChild(todoContainer);
 
     const title = document.createElement("div");
-    title.textContent = todo.title.toUpperCase();
+    title.textContent = todo.title.toLowerCase();
 
     const date = document.createElement("div");
     date.textContent = todo.dueDate;
-
+    
     const leftSide = document.createElement("div");
     leftSide.classList.add("leftSide");
 
@@ -48,14 +49,22 @@ class Dom {
     const checkSpan = document.createElement("span");
     checkSpan.classList.add("checkmark");
 
+    const open = document.createElement("div");
+    open.classList.add("open");
+    const openImg = document.createElement("img");
+    openImg.classList.add("openImg");
+    openImg.src = openImage;
+    open.appendChild(openImg);
+
     checkLabel.appendChild(checkInput);
     checkLabel.appendChild(checkSpan);
 
-    leftSide.appendChild(priorityTodo);
+    leftSide.appendChild(checkLabel);
     leftSide.appendChild(title);
 
     rightSide.appendChild(date);
-    rightSide.appendChild(checkLabel);
+    rightSide.appendChild(open);
+    rightSide.appendChild(priorityTodo);
   }
 
   static createProject = (project) => {
