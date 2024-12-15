@@ -6,7 +6,6 @@ import Storage from "./localstorage";
 
 //edit todos,
 //mark to do as finished
-//view todo's
 
 const todo1 = new Todo(0, "odin project", "entire course", "2024-12-01", "high", "default", false);
 Dom.createTodo(todo1);
@@ -21,6 +20,8 @@ const addProject = document.querySelector(".projectCreate");
 const addProjectMobileNav = document.querySelector(".projectCreateNav");
 const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
+const modalTitle = document.querySelector(".modal-title");
+const bottom = document.querySelector(".bottom");
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
@@ -29,14 +30,14 @@ const loadStorage = () => {
 
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
-        const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate, 
+        const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
             todoObject._priority, todoObject._project, todoObject);
         Dom.createTodo(todo);
     }
 
     for (let a = 0; a < projectArray.length; a++) {
         const projectObject = projectArray[a];
-        const project = new Project(projectObject._id , projectObject._name);
+        const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
     }
 }
@@ -45,6 +46,7 @@ window.onload = loadStorage;
 
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
+    modalTitle.textContent = "CREATE TODO";
     addUnclickable();
 });
 
@@ -125,6 +127,14 @@ navMobile.addEventListener('click', function () {
 
 closebtn.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
+});
+
+bottom.addEventListener("click", (event) => {
+    if (event.target.classList.contains("openImg")) {
+        modal.classList.add("showModal");
+        modalTitle.textContent = "EDIT TODO";
+        addUnclickable();
+    }
 });
 
 const addUnclickable = () => {

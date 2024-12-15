@@ -15,7 +15,7 @@ class Dom {
 
     const date = document.createElement("div");
     date.textContent = todo.dueDate;
-    
+
     const leftSide = document.createElement("div");
     leftSide.classList.add("leftSide");
 
