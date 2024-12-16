@@ -20,7 +20,7 @@ const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
-const cars = document.querySelector(".cars");
+const projectValue = document.querySelector(".project-value");
 const modalButton = document.querySelector(".btnSubmit");
 
 const todoArray = Storage.getSortedTodoArray();
@@ -43,14 +43,13 @@ const loadStorage = () => {
         const projectObject = projectArray[a];
         const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
-    }
 
-    for (let a = 0; a < projectArray.length; a++) {
         const projectOption = document.createElement("option");
         projectOption.value = projectArray[a]._name;
         projectOption.textContent = projectArray[a]._name.toLowerCase();
-        cars.appendChild(projectOption);
+        projectValue.appendChild(projectOption);
     }
+
 }
 
 window.onload = loadStorage;
@@ -165,11 +164,13 @@ projectForm.addEventListener('submit', e => {
 });
 
 navMobile.addEventListener('click', function () {
-    document.querySelector(".sidenav").style.width = "350px";
+    document.querySelector(".sidenav").style.width = "250px";
+    addUnclickable();
 });
 
 closebtn.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
+    removeUnclickable();
 });
 
 bottom.addEventListener("click", (event) => {
@@ -185,7 +186,7 @@ bottom.addEventListener("click", (event) => {
                 const todoTitle = document.querySelector(".todo-title");
                 const todoDescription = document.querySelector(".todo-description");
                 const todoDate = document.querySelector(".todo-date");
-                const todoProject = document.querySelector(".cars");
+                const todoProject = document.querySelector(".project-value");
 
                 if (todoArray[a]._priority == 'low') {
                     const priorityView = document.getElementById("dot-1");
@@ -215,12 +216,14 @@ const addUnclickable = () => {
     addToDo.classList.add("unclickable");
     addProject.classList.add("unclickable");
     navMobile.classList.add("unclickable");
+    bottom.classList.add("unclickable");
 }
 
 const removeUnclickable = () => {
     addToDo.classList.remove("unclickable");
     addProject.classList.remove("unclickable");
     navMobile.classList.remove("unclickable");
+    bottom.classList.remove("unclickable");
 }
 
 window.addEventListener("resize", function () {

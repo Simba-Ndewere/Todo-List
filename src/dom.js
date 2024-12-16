@@ -1,7 +1,7 @@
 import openImage from './open.png'
 
 const bottom = document.querySelector(".bottom");
-const cars = document.querySelector(".cars");
+const projectValue = document.querySelector(".project-value");
 
 class Dom {
 
@@ -128,7 +128,7 @@ class Dom {
       const projectOption = document.createElement("option");
       projectOption.value = project.name;
       projectOption.textContent = project.name;
-      cars.appendChild(projectOption);
+      projectValue.appendChild(projectOption);
   }
 
   static getAllProjects = () => {
