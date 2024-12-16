@@ -219,7 +219,7 @@ input[type="radio"] {
     display: none;
 }
 
-.sold-out {
+.completed {
     text-decoration: line-through;
 }
 

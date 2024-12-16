@@ -49,6 +49,8 @@ class Dom {
 
     const checkInput = document.createElement("input");
     checkInput.setAttribute("type", "checkbox");
+    checkInput.id = "-" + todo.id.toString();
+    checkInput.classList.add("todo-checkbox");
 
     const checkSpan = document.createElement("span");
     checkSpan.classList.add("checkmark");
@@ -73,27 +75,25 @@ class Dom {
   }
 
   static updateToDoContainer = (updatedToDo) => {
-      const todoId = updatedToDo.id;
-      const title = document.getElementById("title" + todoId.toString());
-      const date = document.getElementById("date" + todoId.toString());
-      const priority = document.getElementById("priority" + todoId.toString());
+    const todoId = updatedToDo.id;
+    const title = document.getElementById("title" + todoId.toString());
+    const date = document.getElementById("date" + todoId.toString());
+    const priority = document.getElementById("priority" + todoId.toString());
 
-      if (updatedToDo.priority == "low") {
-        priority.style.backgroundColor = "green";
-      }
-  
-      if (updatedToDo.priority == "medium") {
-        priority.style.backgroundColor = "orange";
-      }
-  
-      if (updatedToDo.priority == "high") {
-        priority.style.backgroundColor = "red";
-      }
+    if (updatedToDo.priority == "low") {
+      priority.style.backgroundColor = "green";
+    }
 
-      title.textContent = updatedToDo.title.toLowerCase();
-      date.textContent = updatedToDo.dueDate.toLowerCase();
-      
+    if (updatedToDo.priority == "medium") {
+      priority.style.backgroundColor = "orange";
+    }
 
+    if (updatedToDo.priority == "high") {
+      priority.style.backgroundColor = "red";
+    }
+
+    title.textContent = updatedToDo.title.toLowerCase();
+    date.textContent = updatedToDo.dueDate.toLowerCase();
 
   }
 
@@ -125,10 +125,10 @@ class Dom {
   }
 
   static addProjectToDropDown = (project) => {
-      const projectOption = document.createElement("option");
-      projectOption.value = project.name;
-      projectOption.textContent = project.name;
-      projectValue.appendChild(projectOption);
+    const projectOption = document.createElement("option");
+    projectOption.value = project.name;
+    projectOption.textContent = project.name;
+    projectValue.appendChild(projectOption);
   }
 
   static getAllProjects = () => {

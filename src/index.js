@@ -31,7 +31,6 @@ let todoIdGlobal = 0;
 const loadStorage = () => {
     Storage.loadLocalStorage();
     todoArray.push(todo1);
-    
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -116,23 +115,20 @@ form.addEventListener('submit', e => {
             Storage.saveTodo(createdTodo);
             Dom.createTodo(createdTodo);
             todoArray.push(createdTodo);
+
             form.reset();
             modal.classList.remove("showModal");
             removeUnclickable();
         } else {
             error.innerText = "";
             let data = new FormData(e.target);
-
-            //update todo array with new values
-
-            const updatedTodo = new Todo(todoIdGlobal,data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+            const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
             Dom.updateToDoContainer(updatedTodo);
             Storage.deleteTodo(updatedTodo);
             Storage.saveTodo(updatedTodo);
 
-            for(let a = 0; a < todoArray.length; a++){
-                console.log("todo running");
-                if(todoArray[a]._id == updatedTodo.id){
+            for (let a = 0; a < todoArray.length; a++) {
+                if (todoArray[a]._id == updatedTodo.id) {
                     todoArray[a]._title = updatedTodo.title;
                     todoArray[a]._description = updatedTodo.description;
                     todoArray[a]._dueDate = updatedTodo.dueDate;
@@ -212,6 +208,24 @@ bottom.addEventListener("click", (event) => {
     }
 });
 
+bottom.addEventListener("click", (event) => {
+    if (event.target.classList.contains("todo-checkbox")) {
+        const todoId = Number(event.target.id.substring(1));
+        const title = document.getElementById("title" + todoId.toString());
+        if (event.target.checked) {
+            title.classList.add("completed")
+        } else {
+            title.classList.remove("completed")
+        }
+    }
+});
+
+window.addEventListener("resize", function () {
+    if (window.innerWidth > 768) {
+        document.querySelector(".sidenav").style.width = "0";
+    }
+});
+
 const addUnclickable = () => {
     addToDo.classList.add("unclickable");
     addProject.classList.add("unclickable");
@@ -225,11 +239,5 @@ const removeUnclickable = () => {
     navMobile.classList.remove("unclickable");
     bottom.classList.remove("unclickable");
 }
-
-window.addEventListener("resize", function () {
-    if (window.innerWidth > 768) {
-        document.querySelector(".sidenav").style.width = "0";
-    }
-});
 
 
