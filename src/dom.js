@@ -13,8 +13,10 @@ class Dom {
 
     const title = document.createElement("div");
     title.textContent = todo.title.toLowerCase();
+    title.id = "title" + todo.id.toString();
 
     const date = document.createElement("div");
+    date.id = "date" + todo.id.toString();
     date.textContent = todo.dueDate;
 
     const leftSide = document.createElement("div");
@@ -28,6 +30,7 @@ class Dom {
 
     const priorityTodo = document.createElement("div");
     priorityTodo.classList.add("priorityTodo");
+    priorityTodo.id = "priority" + todo.id.toString();
 
     if (todo.priority == "low") {
       priorityTodo.style.backgroundColor = "green";
@@ -67,6 +70,35 @@ class Dom {
     rightSide.appendChild(date);
     rightSide.appendChild(open);
     rightSide.appendChild(priorityTodo);
+  }
+
+  static updateToDoContainer = (updatedToDo) => {
+      const todoId = updatedToDo.id;
+      const title = document.getElementById("title" + todoId.toString());
+      const date = document.getElementById("date" + todoId.toString());
+      const priority = document.getElementById("priority" + todoId.toString());
+
+      if (updatedToDo.priority == "low") {
+        priority.style.backgroundColor = "green";
+      }
+  
+      if (updatedToDo.priority == "medium") {
+        priority.style.backgroundColor = "orange";
+      }
+  
+      if (updatedToDo.priority == "high") {
+        priority.style.backgroundColor = "red";
+      }
+
+      title.textContent = updatedToDo.title.toLowerCase();
+      date.textContent = updatedToDo.dueDate.toLowerCase();
+      
+
+
+  }
+
+  static completeTodo = () => {
+
   }
 
   static createProject = (project) => {

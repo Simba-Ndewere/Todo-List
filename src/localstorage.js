@@ -26,6 +26,10 @@ class Storage {
         Storage.sortById(projectsArray);
     }
 
+    static deleteTodo = (todo) => {
+        localStorage.removeItem("todo-" + todo.id);
+    }
+
     static getSortedTodoArray = () => {
         return todosArray;
     }

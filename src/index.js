@@ -4,7 +4,6 @@ import Dom from "./dom";
 import Project from "./project";
 import Storage from "./localstorage";
 
-//edit todos,
 //mark to do as finished
 
 const todo1 = new Todo(0, "odin project", "entire course", "2024-12-01", "high", "default", false);
@@ -23,13 +22,15 @@ const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
 const cars = document.querySelector(".cars");
+const modalButton = document.querySelector(".btnSubmit");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
 
+let todoIdGlobal = 0;
+
 const loadStorage = () => {
     Storage.loadLocalStorage();
-    console.log(localStorage);
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -42,7 +43,7 @@ const loadStorage = () => {
         const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
     }
-    todoArray.push(todo1);
+    //todoArray.push(todo1);
 
     for (let a = 0; a < projectArray.length; a++) {
         const projectOption = document.createElement("option");
@@ -57,6 +58,7 @@ window.onload = loadStorage;
 addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
     modalTitle.textContent = "CREATE TODO";
+    modalButton.textContent = "SUBMIT";
     addUnclickable();
 });
 
@@ -107,15 +109,33 @@ form.addEventListener('submit', e => {
     if (!checked) {
         error.innerText = "please enter priority"
     } else {
-        error.innerText = "";
-        let data = new FormData(e.target);
-        let keyCount = localStorage.length;
-        const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
-        Storage.saveTodo(createdTodo);
-        Dom.createTodo(createdTodo);
-        form.reset();
-        modal.classList.remove("showModal");
-        removeUnclickable();
+        if (modalButton.textContent == 'SUBMIT') {
+            error.innerText = "";
+            let data = new FormData(e.target);
+            let keyCount = localStorage.length;
+            const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+            Storage.saveTodo(createdTodo);
+            Dom.createTodo(createdTodo);
+            //todoArray.push(createdTodo);
+            form.reset();
+            modal.classList.remove("showModal");
+            removeUnclickable();
+        } else {
+            error.innerText = "";
+            let data = new FormData(e.target);
+
+            //delete old todo from storage and add new todo to storage
+            //update todo array with new values
+
+            const updatedTodo = new Todo(todoIdGlobal,data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+            Dom.updateToDoContainer(updatedTodo);
+            Storage.deleteTodo(updatedTodo);
+            Storage.saveTodo(updatedTodo);
+
+            form.reset();
+            modal.classList.remove("showModal");
+            removeUnclickable();
+        }
     }
 });
 
@@ -143,11 +163,14 @@ closebtn.addEventListener('click', function () {
 
 bottom.addEventListener("click", (event) => {
     if (event.target.classList.contains("openImg")) {
+        addUnclickable();
         modal.classList.add("showModal");
         modalTitle.textContent = "VIEW TODO";
+        modalButton.textContent = "UPDATE";
         let todoId = Number(event.target.id.substring(1));
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == todoId) {
+                todoIdGlobal = todoId;
                 const todoTitle = document.querySelector(".todo-title");
                 const todoDescription = document.querySelector(".todo-description");
                 const todoDate = document.querySelector(".todo-date");
@@ -172,7 +195,6 @@ bottom.addEventListener("click", (event) => {
                 todoDescription.value = todoArray[a]._description;
                 todoDate.value = todoArray[a]._dueDate;
                 todoProject.value = todoArray[a]._project;
-
             }
         }
     }
