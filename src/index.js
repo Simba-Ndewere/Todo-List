@@ -7,7 +7,6 @@ import Storage from "./localstorage";
 //mark to do as finished
 
 const todo1 = new Todo(0, "odin project", "entire course", "2024-12-01", "high", "default", false);
-Dom.createTodo(todo1);
 
 const modal = document.querySelector(".modal-container");
 const addToDo = document.querySelector(".signCreate");
@@ -31,6 +30,8 @@ let todoIdGlobal = 0;
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
+    todoArray.push(todo1);
+    
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -43,7 +44,6 @@ const loadStorage = () => {
         const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
     }
-    //todoArray.push(todo1);
 
     for (let a = 0; a < projectArray.length; a++) {
         const projectOption = document.createElement("option");
@@ -116,7 +116,7 @@ form.addEventListener('submit', e => {
             const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
             Storage.saveTodo(createdTodo);
             Dom.createTodo(createdTodo);
-            //todoArray.push(createdTodo);
+            todoArray.push(createdTodo);
             form.reset();
             modal.classList.remove("showModal");
             removeUnclickable();
@@ -124,13 +124,24 @@ form.addEventListener('submit', e => {
             error.innerText = "";
             let data = new FormData(e.target);
 
-            //delete old todo from storage and add new todo to storage
             //update todo array with new values
 
             const updatedTodo = new Todo(todoIdGlobal,data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
             Dom.updateToDoContainer(updatedTodo);
             Storage.deleteTodo(updatedTodo);
             Storage.saveTodo(updatedTodo);
+
+            for(let a = 0; a < todoArray.length; a++){
+                console.log("todo running");
+                if(todoArray[a]._id == updatedTodo.id){
+                    todoArray[a]._title = updatedTodo.title;
+                    todoArray[a]._description = updatedTodo.description;
+                    todoArray[a]._dueDate = updatedTodo.dueDate;
+                    todoArray[a]._priority = priority;
+                    todoArray[a]._project = updatedTodo.project;
+                    todoArray[a]._completed = updatedTodo.completed;
+                }
+            }
 
             form.reset();
             modal.classList.remove("showModal");
