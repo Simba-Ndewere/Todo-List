@@ -7,6 +7,9 @@ const projectValue = document.querySelector(".project-value");
 const modal = document.querySelector(".modal-container");
 const modalTitle = document.querySelector(".modal-title");
 const modalButton = document.querySelector(".btnSubmit");
+const addToDo = document.querySelector(".signCreate");
+const addProject = document.querySelector(".projectCreate");
+const navMobile = document.querySelector(".nav-icon");
 
 class Dom {
 
@@ -203,6 +206,20 @@ class Dom {
     todoDescription.value = todo._description;
     todoDate.value = todo._dueDate;
     todoProject.value = todo._project;
+  }
+
+  static addUnclickable = () => {
+    addToDo.classList.add("unclickable");
+    addProject.classList.add("unclickable");
+    navMobile.classList.add("unclickable");
+    bottom.classList.add("unclickable");
+  }
+
+  static removeUnclickable = () => {
+    addToDo.classList.remove("unclickable");
+    addProject.classList.remove("unclickable");
+    navMobile.classList.remove("unclickable");
+    bottom.classList.remove("unclickable");
   }
 
 }

@@ -51,30 +51,30 @@ addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
     modalTitle.textContent = "CREATE TODO";
     modalButton.textContent = "SUBMIT";
-    addUnclickable();
+    Dom.addUnclickable();
 });
 
 addProject.addEventListener('click', function () {
     projectForm.classList.add("showModal");
-    addUnclickable();
+    Dom.addUnclickable();
 });
 
 close.addEventListener('click', function () {
     form.reset();
     modal.classList.remove("showModal");
-    removeUnclickable();
+    Dom.removeUnclickable();
 });
 
 projectClose.addEventListener('click', function () {
     projectForm.reset();
     projectForm.classList.remove("showModal");
-    removeUnclickable();
+    Dom.removeUnclickable();
 });
 
 addProjectMobileNav.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
     projectForm.classList.add("showModal");
-    addUnclickable();
+    Dom.addUnclickable();
 });
 
 form.addEventListener('submit', e => {
@@ -112,7 +112,7 @@ form.addEventListener('submit', e => {
 
             form.reset();
             modal.classList.remove("showModal");
-            removeUnclickable();
+            Dom.removeUnclickable();
         } else {
             error.innerText = "";
             let data = new FormData(e.target);
@@ -134,7 +134,7 @@ form.addEventListener('submit', e => {
 
             form.reset();
             modal.classList.remove("showModal");
-            removeUnclickable();
+            Dom.removeUnclickable();
         }
     }
 });
@@ -148,24 +148,24 @@ projectForm.addEventListener('submit', e => {
     Dom.createProject(createdProject);
     projectForm.reset();
     projectForm.classList.remove("showModal");
-    removeUnclickable();
+    Dom.removeUnclickable();
 
     Dom.addProjectToDropDown(createdProject);
 });
 
 navMobile.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "250px";
-    addUnclickable();
+    Dom.addUnclickable();
 });
 
 closebtn.addEventListener('click', function () {
     document.querySelector(".sidenav").style.width = "0";
-    removeUnclickable();
+    Dom.removeUnclickable();
 });
 
 bottom.addEventListener("click", (event) => {
     if (event.target.classList.contains("openImg")) {
-        addUnclickable();
+        Dom.addUnclickable();
         let todoId = Number(event.target.id.substring(1));
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == todoId) {
@@ -197,18 +197,6 @@ window.addEventListener("resize", function () {
     }
 });
 
-const addUnclickable = () => {
-    addToDo.classList.add("unclickable");
-    addProject.classList.add("unclickable");
-    navMobile.classList.add("unclickable");
-    bottom.classList.add("unclickable");
-}
 
-const removeUnclickable = () => {
-    addToDo.classList.remove("unclickable");
-    addProject.classList.remove("unclickable");
-    navMobile.classList.remove("unclickable");
-    bottom.classList.remove("unclickable");
-}
 
 
