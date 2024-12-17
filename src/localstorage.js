@@ -30,6 +30,10 @@ class Storage {
         localStorage.removeItem("todo-" + todo._id);
     }
 
+    static deleteTodoById = (todoId) => {
+        localStorage.removeItem("todo-" + todoId);
+    }
+
     static getSortedTodoArray = () => {
         return todosArray;
     }

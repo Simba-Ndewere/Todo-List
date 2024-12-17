@@ -224,6 +224,13 @@ class Dom {
     bottom.classList.remove("unclickable");
   }
 
+  static deleteTodoContainer = (containerId) => {
+    const todoCont = document.getElementById("cont" + containerId.toString());
+    bottom.removeChild(todoCont);
+    const todoId = containerId;
+    Storage.deleteTodoById(todoId);
+  }
+
 }
 
 export default Dom;

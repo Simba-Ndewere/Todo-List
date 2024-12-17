@@ -29,7 +29,6 @@ const loadStorage = () => {
     Storage.loadLocalStorage();
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
-        console.log(todoObject);
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
             todoObject._priority, todoObject._project, todoObject._completed);
 
@@ -185,10 +184,8 @@ bottom.addEventListener("click", (event) => {
 });
 
 bottom.addEventListener("click", (event) => {
-
     if (event.target.classList.contains("todo-checkbox")) {
         const todoId = Number(event.target.id.substring(1));
-
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == todoId) {
                 Dom.completeTodo(todoArray[a], event);
@@ -198,6 +195,13 @@ bottom.addEventListener("click", (event) => {
     }
 });
 
+
+deleteButton.addEventListener("click", () => {
+    Dom.deleteTodoContainer(todoIdGlobal);
+    form.reset();
+    modal.classList.remove("showModal");
+    Dom.removeUnclickable();
+});
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
