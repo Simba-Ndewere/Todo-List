@@ -481,7 +481,12 @@ div span.priority {
     }
 
     nav {
-        padding-left: 40px;
+        padding-left: 30px;
+        padding-top: 130px;
+    }
+
+    .left {
+        width: 30%;
     }
 
 }
@@ -528,7 +533,7 @@ div span.priority {
     }
 
     .project-container {
-        width: 60%;
+        width: 80%;
     }
 
     .nav-icon {
@@ -550,6 +555,9 @@ div span.priority {
         align-items: center;
     }
 
+    .btnSubmit {
+        width: 30%;
+    }
 }
 
 

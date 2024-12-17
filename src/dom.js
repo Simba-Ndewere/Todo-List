@@ -100,9 +100,7 @@ class Dom {
   }
 
   static completeTodo = (todo, event) => {
-    //change priority colour to gray
-    //change local storage to completed
-
+  
     const title = document.getElementById("title" + todo._id.toString());
     const newToDo = new Todo(todo._id, todo._title, todo._description, todo._dueDate, todo._priority, todo._project, event.target.checked);
     if (event.target.checked) {
