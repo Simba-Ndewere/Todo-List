@@ -17,6 +17,7 @@ const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
 const modalButton = document.querySelector(".btnSubmit");
+const error = document.querySelector(".error");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -78,7 +79,6 @@ addProjectMobileNav.addEventListener('click', function () {
 });
 
 form.addEventListener('submit', e => {
-    const error = document.querySelector(".error");
     e.preventDefault();
     let checked = false;
     let priority = "";
@@ -101,43 +101,47 @@ form.addEventListener('submit', e => {
     if (!checked) {
         error.innerText = "please enter priority"
     } else {
-        if (modalButton.textContent == 'SUBMIT') {
-            error.innerText = "";
-            let data = new FormData(e.target);
-            let keyCount = localStorage.length;
-            const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
-            Storage.saveTodo(createdTodo);
-            Dom.createTodo(createdTodo);
-            todoArray.push(createdTodo);
-
-            form.reset();
-            modal.classList.remove("showModal");
-            Dom.removeUnclickable();
-        } else {
-            error.innerText = "";
-            let data = new FormData(e.target);
-            const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
-            Dom.updateToDoContainer(updatedTodo);
-            Storage.deleteTodo(updatedTodo);
-            Storage.saveTodo(updatedTodo);
-
-            for (let a = 0; a < todoArray.length; a++) {
-                if (todoArray[a]._id == updatedTodo.id) {
-                    todoArray[a]._title = updatedTodo.title;
-                    todoArray[a]._description = updatedTodo.description;
-                    todoArray[a]._dueDate = updatedTodo.dueDate;
-                    todoArray[a]._priority = priority;
-                    todoArray[a]._project = updatedTodo.project;
-                    todoArray[a]._completed = updatedTodo.completed;
-                }
-            }
-
-            form.reset();
-            modal.classList.remove("showModal");
-            Dom.removeUnclickable();
-        }
+        createOrUpdate(e, priority);
     }
 });
+
+const createOrUpdate = (e,priority) => {
+    if (modalButton.textContent == 'SUBMIT') {
+        error.innerText = "";
+        let data = new FormData(e.target);
+        let keyCount = localStorage.length;
+        const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        Storage.saveTodo(createdTodo);
+        Dom.createTodo(createdTodo);
+        todoArray.push(createdTodo);
+
+        form.reset();
+        modal.classList.remove("showModal");
+        Dom.removeUnclickable();
+    } else {
+        error.innerText = "";
+        let data = new FormData(e.target);
+        const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        Dom.updateToDoContainer(updatedTodo);
+        Storage.deleteTodo(updatedTodo);
+        Storage.saveTodo(updatedTodo);
+
+        for (let a = 0; a < todoArray.length; a++) {
+            if (todoArray[a]._id == updatedTodo.id) {
+                todoArray[a]._title = updatedTodo.title;
+                todoArray[a]._description = updatedTodo.description;
+                todoArray[a]._dueDate = updatedTodo.dueDate;
+                todoArray[a]._priority = priority;
+                todoArray[a]._project = updatedTodo.project;
+                todoArray[a]._completed = updatedTodo.completed;
+            }
+        }
+
+        form.reset();
+        modal.classList.remove("showModal");
+        Dom.removeUnclickable();
+    }
+}
 
 projectForm.addEventListener('submit', e => {
     e.preventDefault();
