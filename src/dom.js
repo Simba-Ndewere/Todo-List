@@ -97,8 +97,15 @@ class Dom {
 
   }
 
-  static completeTodo = () => {
-
+  static completeTodo = (todoId, event) => {
+    const title = document.getElementById("title" + todoId.toString());
+    if (event.target.checked) {
+      console.log("before");
+      title.classList.add("completed")
+    } else {
+      title.classList.remove("completed")
+      console.log("after");
+    }
   }
 
   static createProject = (project) => {

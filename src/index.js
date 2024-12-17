@@ -6,7 +6,7 @@ import Storage from "./localstorage";
 
 //mark to do as finished
 
-const todo1 = new Todo(0, "odin project", "entire course", "2024-12-01", "high", "default", false);
+const todo1 = new Todo(0, "odin project", "entire course", "2025-06-31", "high", "default", false);
 
 const modal = document.querySelector(".modal-container");
 const addToDo = document.querySelector(".signCreate");
@@ -211,12 +211,8 @@ bottom.addEventListener("click", (event) => {
 bottom.addEventListener("click", (event) => {
     if (event.target.classList.contains("todo-checkbox")) {
         const todoId = Number(event.target.id.substring(1));
-        const title = document.getElementById("title" + todoId.toString());
-        if (event.target.checked) {
-            title.classList.add("completed")
-        } else {
-            title.classList.remove("completed")
-        }
+        Dom.completeTodo(todoId, event);
+
     }
 });
 
