@@ -18,6 +18,7 @@ const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
 const modalButton = document.querySelector(".btnSubmit");
 const error = document.querySelector(".error");
+const deleteButton = document.querySelector(".deleteButton");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -52,6 +53,7 @@ addToDo.addEventListener('click', function () {
     modal.classList.add("showModal");
     modalTitle.textContent = "CREATE TODO";
     modalButton.textContent = "SUBMIT";
+    deleteButton.classList.add("hide");
     Dom.addUnclickable();
 });
 
@@ -105,7 +107,7 @@ form.addEventListener('submit', e => {
     }
 });
 
-const createOrUpdate = (e,priority) => {
+const createOrUpdate = (e, priority) => {
     if (modalButton.textContent == 'SUBMIT') {
         error.innerText = "";
         let data = new FormData(e.target);
@@ -134,6 +136,7 @@ const createOrUpdate = (e,priority) => {
                 todoArray[a]._priority = priority;
                 todoArray[a]._project = updatedTodo.project;
                 todoArray[a]._completed = updatedTodo.completed;
+                break;
             }
         }
 
@@ -194,6 +197,7 @@ bottom.addEventListener("click", (event) => {
         }
     }
 });
+
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {

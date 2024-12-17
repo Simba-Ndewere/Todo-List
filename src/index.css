@@ -476,10 +476,14 @@ div span.priority {
     padding-top: 2px;
 }
 
-.delete:hover {
+.deleteButton:hover {
     height: 30px;
     width: 30px;
     cursor: pointer;
+}
+
+.hide {
+    display: none;
 }
 
 /* Tablet design */

@@ -10,6 +10,7 @@ const modalButton = document.querySelector(".btnSubmit");
 const addToDo = document.querySelector(".signCreate");
 const addProject = document.querySelector(".projectCreate");
 const navMobile = document.querySelector(".nav-icon");
+const deleteButton = document.querySelector(".deleteButton");
 
 class Dom {
 
@@ -181,6 +182,7 @@ class Dom {
     modal.classList.add("showModal");
     modalTitle.textContent = "VIEW TODO";
     modalButton.textContent = "UPDATE";
+    deleteButton.classList.remove("hide");
 
     const todoTitle = document.querySelector(".todo-title");
     const todoDescription = document.querySelector(".todo-description");
