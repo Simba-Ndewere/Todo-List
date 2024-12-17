@@ -4,10 +4,6 @@ import Dom from "./dom";
 import Project from "./project";
 import Storage from "./localstorage";
 
-//mark to do as finished
-
-const todo1 = new Todo(0, "odin project", "entire course", "2025-06-31", "high", "default", false);
-
 const modal = document.querySelector(".modal-container");
 const addToDo = document.querySelector(".signCreate");
 const form = document.querySelector(".modal-container");
@@ -30,12 +26,21 @@ let todoIdGlobal = 0;
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
-    todoArray.push(todo1);
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
+        console.log(todoObject);
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
-            todoObject._priority, todoObject._project, todoObject);
+            todoObject._priority, todoObject._project, todoObject._completed);
+
         Dom.createTodo(todo);
+        if (todo.completed) {
+            const title = document.getElementById("title" + todoObject._id.toString());
+            title.classList.add("completed");
+            const checkbox = document.getElementById("-" + todo.id);
+            checkbox.checked = true;
+            const priority = document.getElementById("priority" + todo._id.toString());
+            priority.style.backgroundColor = "gray";
+        }
     }
 
     for (let a = 0; a < projectArray.length; a++) {
@@ -48,7 +53,6 @@ const loadStorage = () => {
         projectOption.textContent = projectArray[a]._name.toLowerCase();
         projectValue.appendChild(projectOption);
     }
-
 }
 
 window.onload = loadStorage;
@@ -209,10 +213,16 @@ bottom.addEventListener("click", (event) => {
 });
 
 bottom.addEventListener("click", (event) => {
+
     if (event.target.classList.contains("todo-checkbox")) {
         const todoId = Number(event.target.id.substring(1));
-        Dom.completeTodo(todoId, event);
 
+        for (let a = 0; a < todoArray.length; a++) {
+            if (todoArray[a]._id == todoId) {
+                Dom.completeTodo(todoArray[a], event);
+                break;
+            }
+        }
     }
 });
 

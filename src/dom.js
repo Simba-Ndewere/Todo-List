@@ -1,4 +1,6 @@
+import Storage from "./localstorage";
 import openImage from './open.png'
+import Todo from "./todo";
 
 const bottom = document.querySelector(".bottom");
 const projectValue = document.querySelector(".project-value");
@@ -97,14 +99,37 @@ class Dom {
 
   }
 
-  static completeTodo = (todoId, event) => {
-    const title = document.getElementById("title" + todoId.toString());
+  static completeTodo = (todo, event) => {
+    //change priority colour to gray
+    //change local storage to completed
+
+    const title = document.getElementById("title" + todo._id.toString());
+    const newToDo = new Todo(todo._id, todo._title, todo._description, todo._dueDate, todo._priority, todo._project, event.target.checked);
     if (event.target.checked) {
-      console.log("before");
-      title.classList.add("completed")
+      title.classList.add("completed");
+      Storage.deleteTodo(todo);
+      Storage.saveTodo(newToDo);
+      const priority = document.getElementById("priority" + todo._id.toString());
+      priority.style.backgroundColor = "gray";
     } else {
-      title.classList.remove("completed")
-      console.log("after");
+      title.classList.remove("completed");
+      Storage.deleteTodo(todo);
+      Storage.saveTodo(newToDo);
+
+      const priorityTodo = document.getElementById("priority" + todo._id.toString());
+
+      if (todo._priority == "low") {
+        priorityTodo.style.backgroundColor = "green";
+      }
+
+      if (todo._priority == "medium") {
+        priorityTodo.style.backgroundColor = "orange";
+      }
+
+      if (todo._priority == "high") {
+        priorityTodo.style.backgroundColor = "red";
+      }
+
     }
   }
 
@@ -141,6 +166,7 @@ class Dom {
   static getAllProjects = () => {
     //get all projects from local storage
   }
+
 
 }
 

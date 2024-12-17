@@ -4,7 +4,7 @@ const projectsArray = [];
 class Storage {
 
     static saveTodo = (todo) => {
-        let todoKey = "todo-" + todo.id;
+        let todoKey = "todo-" + todo._id;
         localStorage.setItem(todoKey, JSON.stringify(todo));
     }
 
@@ -27,7 +27,7 @@ class Storage {
     }
 
     static deleteTodo = (todo) => {
-        localStorage.removeItem("todo-" + todo.id);
+        localStorage.removeItem("todo-" + todo._id);
     }
 
     static getSortedTodoArray = () => {
