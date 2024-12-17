@@ -4,12 +4,16 @@ import Todo from "./todo";
 
 const bottom = document.querySelector(".bottom");
 const projectValue = document.querySelector(".project-value");
+const modal = document.querySelector(".modal-container");
+const modalTitle = document.querySelector(".modal-title");
+const modalButton = document.querySelector(".btnSubmit");
 
 class Dom {
 
   static createTodo = (todo) => {
 
     const todoContainer = document.createElement("div");
+    todoContainer.id = "cont" + todo.id.toString();
     todoContainer.classList.add("todoContainer");
     bottom.appendChild(todoContainer);
 
@@ -100,7 +104,7 @@ class Dom {
   }
 
   static completeTodo = (todo, event) => {
-  
+
     const title = document.getElementById("title" + todo._id.toString());
     const newToDo = new Todo(todo._id, todo._title, todo._description, todo._dueDate, todo._priority, todo._project, event.target.checked);
     if (event.target.checked) {
@@ -161,10 +165,45 @@ class Dom {
     projectValue.appendChild(projectOption);
   }
 
-  static getAllProjects = () => {
-    //get all projects from local storage
+  static todoCheckbox = (todo) => {
+    const title = document.getElementById("title" + todo.id.toString());
+    title.classList.add("completed");
+    const checkbox = document.getElementById("-" + todo.id);
+    checkbox.checked = true;
+    const priority = document.getElementById("priority" + todo.id.toString());
+    priority.style.backgroundColor = "gray";
   }
 
+  static editModal = (todo) => {
+    modal.classList.add("showModal");
+    modalTitle.textContent = "VIEW TODO";
+    modalButton.textContent = "UPDATE";
+
+    const todoTitle = document.querySelector(".todo-title");
+    const todoDescription = document.querySelector(".todo-description");
+    const todoDate = document.querySelector(".todo-date");
+    const todoProject = document.querySelector(".project-value");
+
+    if (todo._priority == 'low') {
+      const priorityView = document.getElementById("dot-1");
+      priorityView.checked = true;
+    }
+
+    if (todo._priority == 'medium') {
+      const priorityView = document.getElementById("dot-2");
+      priorityView.checked = true;
+    }
+
+    if (todo._priority == 'high') {
+      const priorityView = document.getElementById("dot-3");
+      priorityView.checked = true;
+    }
+
+    todoTitle.value = todo._title;
+    todoDescription.value = todo._description;
+    todoDate.value = todo._dueDate;
+    todoProject.value = todo._project;
+  }
 
 }
 

@@ -25,6 +25,7 @@ body {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
 }
 
 nav {
@@ -378,6 +379,7 @@ div span.priority {
 .btnSubmit:hover {
     width: 26%;
     height: 36px;
+    cursor: pointer;
 }
 
 .details {
@@ -427,7 +429,7 @@ div span.priority {
     overflow-x: hidden;
     transition: 0.5s;
     border: solid 2px #40bcd8;
-
+    font-family: 'Quicksand', sans-serif;
 }
 
 .slide {
@@ -461,6 +463,23 @@ div span.priority {
 
 .unclickable {
     pointer-events: none;
+}
+
+.submit-delete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-delete img {
+    height: 28px;
+    width: 28px;
+    padding-top: 2px;
+}
+
+.delete:hover {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
 }
 
 /* Tablet design */

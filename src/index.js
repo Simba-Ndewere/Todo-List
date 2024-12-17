@@ -16,7 +16,6 @@ const navMobile = document.querySelector(".nav-icon");
 const closebtn = document.querySelector(".closebtn");
 const modalTitle = document.querySelector(".modal-title");
 const bottom = document.querySelector(".bottom");
-const projectValue = document.querySelector(".project-value");
 const modalButton = document.querySelector(".btnSubmit");
 
 const todoArray = Storage.getSortedTodoArray();
@@ -34,12 +33,7 @@ const loadStorage = () => {
 
         Dom.createTodo(todo);
         if (todo.completed) {
-            const title = document.getElementById("title" + todoObject._id.toString());
-            title.classList.add("completed");
-            const checkbox = document.getElementById("-" + todo.id);
-            checkbox.checked = true;
-            const priority = document.getElementById("priority" + todo._id.toString());
-            priority.style.backgroundColor = "gray";
+            Dom.todoCheckbox(todo);
         }
     }
 
@@ -47,11 +41,7 @@ const loadStorage = () => {
         const projectObject = projectArray[a];
         const project = new Project(projectObject._id, projectObject._name);
         Dom.createProject(project);
-
-        const projectOption = document.createElement("option");
-        projectOption.value = projectArray[a]._name;
-        projectOption.textContent = projectArray[a]._name.toLowerCase();
-        projectValue.appendChild(projectOption);
+        Dom.addProjectToDropDown(project);
     }
 }
 
@@ -176,37 +166,12 @@ closebtn.addEventListener('click', function () {
 bottom.addEventListener("click", (event) => {
     if (event.target.classList.contains("openImg")) {
         addUnclickable();
-        modal.classList.add("showModal");
-        modalTitle.textContent = "VIEW TODO";
-        modalButton.textContent = "UPDATE";
         let todoId = Number(event.target.id.substring(1));
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == todoId) {
                 todoIdGlobal = todoId;
-                const todoTitle = document.querySelector(".todo-title");
-                const todoDescription = document.querySelector(".todo-description");
-                const todoDate = document.querySelector(".todo-date");
-                const todoProject = document.querySelector(".project-value");
-
-                if (todoArray[a]._priority == 'low') {
-                    const priorityView = document.getElementById("dot-1");
-                    priorityView.checked = true;
-                }
-
-                if (todoArray[a]._priority == 'medium') {
-                    const priorityView = document.getElementById("dot-2");
-                    priorityView.checked = true;
-                }
-
-                if (todoArray[a]._priority == 'high') {
-                    const priorityView = document.getElementById("dot-3");
-                    priorityView.checked = true;
-                }
-
-                todoTitle.value = todoArray[a]._title;
-                todoDescription.value = todoArray[a]._description;
-                todoDate.value = todoArray[a]._dueDate;
-                todoProject.value = todoArray[a]._project;
+                Dom.editModal(todoArray[a]);
+                break;
             }
         }
     }
