@@ -145,10 +145,10 @@ class Dom {
     for (let a = 0; a < projectFolder.length; a++) {
       const newProject = document.createElement("div");
       newProject.textContent = "- " + project.name.toLowerCase();
+      newProject.classList.add("projectClick");
 
       newProject.addEventListener('mouseenter', () => {
-        newProject.style.color = "#40bcd8";
-        newProject.style.fontSize = "24px";
+        newProject.style.fontSize = "23px";
         newProject.style.cursor = "pointer";
       });
 
@@ -159,6 +159,7 @@ class Dom {
       });
 
       projectFolder[a].appendChild(newProject);
+
     }
   }
 
@@ -230,6 +231,18 @@ class Dom {
     const todoId = containerId;
     Storage.deleteTodoById(todoId);
   }
+
+  static clearBottomDom = (todoArray) => {
+    for (let a = 0; a < todoArray.length; a++) {
+      const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
+      if (todoContainer!=null) {
+        bottom.removeChild(todoContainer);
+      }
+
+    }
+  }
+
+
 
 }
 

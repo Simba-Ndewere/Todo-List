@@ -72,15 +72,13 @@ li {
 }
 
 li:hover {
-    color: #40bcd8;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 23px;
 }
 
 .projectHover {
-    color: #40bcd8;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .top {
@@ -231,7 +229,7 @@ input[type="radio"] {
     transform: translate(-50%, -50%);
     background-color: white;
     border: solid 2px #40bcd8;
-    width: 40%;
+    min-width: 45%;
     min-height: 70%;
     font-family: 'Quicksand', sans-serif;
     box-shadow: 0 20px 30px rgb(0 0 0 / 0.25);
@@ -505,11 +503,15 @@ div span.priority {
 
     nav {
         padding-left: 30px;
-        padding-top: 130px;
+        padding-top: 120px;
     }
 
     .left {
         width: 30%;
+    }
+
+    .modal-container {
+        min-width: 80%;
     }
 
 }
@@ -552,7 +554,7 @@ div span.priority {
     }
 
     .modal-container {
-        width: 80%;
+        width: 60%;
     }
 
     .project-container {

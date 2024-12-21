@@ -19,6 +19,8 @@ const bottom = document.querySelector(".bottom");
 const modalButton = document.querySelector(".btnSubmit");
 const error = document.querySelector(".error");
 const deleteButton = document.querySelector(".deleteButton");
+const projects = document.querySelectorAll(".projects");
+const bottomName = document.querySelector(".project-name-bottom");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -195,13 +197,38 @@ bottom.addEventListener("click", (event) => {
     }
 });
 
-
 deleteButton.addEventListener("click", () => {
     Dom.deleteTodoContainer(todoIdGlobal);
     form.reset();
     modal.classList.remove("showModal");
     Dom.removeUnclickable();
 });
+
+for (let a = 0; a < projects.length; a++) {
+    projects[a].addEventListener("click", (event) => {
+        if (event.target.classList.contains("projectClick")) {
+            const project = event.target.textContent.substring(2);
+            Dom.clearBottomDom(todoArray);
+            bottomName.textContent = project.toUpperCase();
+            populateBottomByProject(project);
+        }
+    });
+}
+
+const populateBottomByProject = (projectName) => {
+    for (let a = 0; a < todoArray.length; a++) {
+      if (todoArray[a]._project == projectName) {
+        const todoObject = todoArray[a];
+        const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
+          todoObject._priority, todoObject._project, todoObject._completed);
+        Dom.createTodo(todo);
+        if (todo.completed) {
+          Dom.todoCheckbox(todo);
+        }
+        break;
+      }
+    }
+  }
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
