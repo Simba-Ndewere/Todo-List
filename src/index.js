@@ -20,6 +20,7 @@ const modalButton = document.querySelector(".btnSubmit");
 const error = document.querySelector(".error");
 const deleteButton = document.querySelector(".deleteButton");
 const projects = document.querySelectorAll(".projects");
+const allTodos = document.querySelectorAll(".all");
 const bottomName = document.querySelector(".project-name-bottom");
 
 const todoArray = Storage.getSortedTodoArray();
@@ -199,6 +200,12 @@ bottom.addEventListener("click", (event) => {
 
 deleteButton.addEventListener("click", () => {
     Dom.deleteTodoContainer(todoIdGlobal);
+    for (let a = 0; a < todoArray.length; a++) {
+        if (todoArray[a]._id == todoIdGlobal) {
+            todoArray.splice(a, 1);
+            break;
+        }
+    }
     form.reset();
     modal.classList.remove("showModal");
     Dom.removeUnclickable();
@@ -215,20 +222,36 @@ for (let a = 0; a < projects.length; a++) {
     });
 }
 
+for (let a = 0; a < allTodos.length; a++) {
+    allTodos[a].addEventListener("click", () => {
+        bottomName.textContent = "ALL TODO's";
+        Dom.clearBottomDom(todoArray);
+        for (let a = 0; a < todoArray.length; a++) {
+            const todoObject = todoArray[a];
+            const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
+                todoObject._priority, todoObject._project, todoObject._completed);
+
+            Dom.createTodo(todo);
+            if (todo.completed) {
+                Dom.todoCheckbox(todo);
+            }
+        }
+    });
+}
+
 const populateBottomByProject = (projectName) => {
     for (let a = 0; a < todoArray.length; a++) {
-      if (todoArray[a]._project == projectName) {
-        const todoObject = todoArray[a];
-        const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
-          todoObject._priority, todoObject._project, todoObject._completed);
-        Dom.createTodo(todo);
-        if (todo.completed) {
-          Dom.todoCheckbox(todo);
+        if (todoArray[a]._project == projectName) {
+            const todoObject = todoArray[a];
+            const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
+                todoObject._priority, todoObject._project, todoObject._completed);
+            Dom.createTodo(todo);
+            if (todo.completed) {
+                Dom.todoCheckbox(todo);
+            }
         }
-        break;
-      }
     }
-  }
+}
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
