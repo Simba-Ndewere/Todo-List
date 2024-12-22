@@ -208,6 +208,13 @@ class Dom {
     todoTitle.value = todo._title;
     todoDescription.value = todo._description;
     todoDate.value = todo._dueDate;
+    console.log("pass" + todo._project);
+    console.log("after" + todoProject._pvalue);
+    if (todoProject.value.toString().toLowerCase() == todo._project.toString().toLowerCase()) {
+      const todoContainer = document.getElementById("cont" + todo._id.toString());
+      bottom.removeChild(todoContainer);
+      console.log("remove");
+    }
     todoProject.value = todo._project;
   }
 

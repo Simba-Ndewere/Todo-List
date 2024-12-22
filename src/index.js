@@ -116,14 +116,13 @@ const createOrUpdate = (e, priority) => {
         error.innerText = "";
         let data = new FormData(e.target);
         let todoIdentification = 0;
-        if (todoArray.length!=0) {
+        if (todoArray.length != 0) {
             todoIdentification = todoArray[0]._id + 1;
         }
         const createdTodo = new Todo(todoIdentification, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
         Storage.saveTodo(createdTodo);
         Dom.createTodo(createdTodo);
         todoArray.push(createdTodo);
-        console.log("object pushed at the end" + createdTodo);
         form.reset();
         modal.classList.remove("showModal");
         Dom.removeUnclickable();
@@ -137,6 +136,11 @@ const createOrUpdate = (e, priority) => {
 
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == updatedTodo.id) {
+                if (data.get("project-folder").toLowerCase() !=  todoArray[a]._project.toLowerCase()) {
+                    const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
+                    bottom.removeChild(todoContainer);
+                }
+
                 todoArray[a]._title = updatedTodo.title;
                 todoArray[a]._description = updatedTodo.description;
                 todoArray[a]._dueDate = updatedTodo.dueDate;
