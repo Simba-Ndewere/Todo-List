@@ -223,7 +223,7 @@ deleteButton.addEventListener("click", () => {
 for (let a = 0; a < projects.length; a++) {
     projects[a].addEventListener("click", (event) => {
         if (event.target.classList.contains("projectClick")) {
-            const project = event.target.textContent.substring(2);
+            const project = event.target.textContent.substring(0);
             Dom.clearBottomDom(todoArray);
             bottomName.textContent = project.toUpperCase();
             populateBottomByProject(project);

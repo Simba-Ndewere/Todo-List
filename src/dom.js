@@ -1,6 +1,7 @@
 import Storage from "./localstorage";
 import openImage from './open.png'
 import Todo from "./todo";
+import folderIcon from './folder.png'
 
 const bottom = document.querySelector(".bottom");
 const projectValue = document.querySelector(".project-value");
@@ -143,8 +144,15 @@ class Dom {
     const projectFolder = document.querySelectorAll(".projects");
 
     for (let a = 0; a < projectFolder.length; a++) {
+      const iconName = document.createElement("div");
+      iconName.classList.add("iconName");
+
+      const iconImage = document.createElement("img");
+      iconImage.classList.add("iconImage");
+      iconImage.src = folderIcon;
+
       const newProject = document.createElement("div");
-      newProject.textContent = "- " + project.name.toLowerCase();
+      newProject.textContent = project.name.toLowerCase();
       newProject.classList.add("projectClick");
 
       newProject.addEventListener('mouseenter', () => {
@@ -158,7 +166,9 @@ class Dom {
         newProject.style.cursor = "none";
       });
 
-      projectFolder[a].appendChild(newProject);
+      iconName.appendChild(iconImage);
+      iconName.appendChild(newProject);
+      projectFolder[a].appendChild(iconName);
 
     }
   }
@@ -208,13 +218,6 @@ class Dom {
     todoTitle.value = todo._title;
     todoDescription.value = todo._description;
     todoDate.value = todo._dueDate;
-    console.log("pass" + todo._project);
-    console.log("after" + todoProject._pvalue);
-    if (todoProject.value.toString().toLowerCase() == todo._project.toString().toLowerCase()) {
-      const todoContainer = document.getElementById("cont" + todo._id.toString());
-      bottom.removeChild(todoContainer);
-      console.log("remove");
-    }
     todoProject.value = todo._project;
   }
 

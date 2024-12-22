@@ -111,17 +111,19 @@ li:hover {
     align-items: center;
     font-size: 22px;
     height: 30px;
+    justify-content: space-between;
 }
 
 .sign img {
     height: 25px;
     width: 25px;
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 .sign img:hover {
     height: 28px;
     width: 28px;
+    cursor: pointer;
 }
 
 input[type="radio"] {
@@ -129,7 +131,6 @@ input[type="radio"] {
     visibility: hidden;
     -webkit-appearance: none;
 }
-
 
 .todoContainer {
     background-color: white;
@@ -468,7 +469,7 @@ div span.priority {
     justify-content: space-between;
 }
 
-.submit-delete img {
+.deleteButton {
     height: 28px;
     width: 28px;
     padding-top: 2px;
@@ -480,8 +481,38 @@ div span.priority {
     cursor: pointer;
 }
 
+.deleteProject {
+    height: 28px;
+    width: 28px;
+    padding-bottom: 2px;
+    display: flex;
+}
+
+.sign-name-div {
+    min-width: 25%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deleteProject:hover {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
 .hide {
     display: none;
+}
+
+.iconName {
+    display: flex;
+    gap: 10px;
+}
+
+.iconImage {
+    height: 28px;
+    width: 28px;
 }
 
 /* Tablet design */
@@ -581,7 +612,11 @@ div span.priority {
     }
 
     .btnSubmit {
-        width: 30%;
+        width: 33%;
+    }
+
+    .btnSubmit:hover {
+        width: 34%;
     }
 }
 
