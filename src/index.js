@@ -29,6 +29,7 @@ const projectArray = Storage.getSortedProjectsArray();
 
 let todoIdGlobal = 0;
 let globalProject = "";
+let globalProjectId = 0;
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
@@ -63,7 +64,6 @@ addToDo.addEventListener('click', function () {
 });
 
 addProject.addEventListener('click', function () {
-    console.log(localStorage);
     projectForm.classList.add("showModal");
     Dom.addUnclickable();
 });
@@ -125,6 +125,7 @@ const createOrUpdate = (e, priority) => {
         Storage.saveTodo(createdTodo);
         Dom.createTodo(createdTodo);
         todoArray.push(createdTodo);
+        Storage.sortById(todoArray);
         form.reset();
         modal.classList.remove("showModal");
         Dom.removeUnclickable();
@@ -138,7 +139,8 @@ const createOrUpdate = (e, priority) => {
 
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == updatedTodo.id) {
-                if (data.get("project-folder").toLowerCase() !=  todoArray[a]._project.toLowerCase()) {
+                if (data.get("project-folder").toLowerCase() != todoArray[a]._project.toLowerCase()
+                    && bottomName.textContent.toString().toLowerCase() != "ALL TODO's".toLowerCase()) {
                     const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
                     bottom.removeChild(todoContainer);
                 }
@@ -152,7 +154,6 @@ const createOrUpdate = (e, priority) => {
                 break;
             }
         }
-
         form.reset();
         modal.classList.remove("showModal");
         Dom.removeUnclickable();
@@ -162,9 +163,17 @@ const createOrUpdate = (e, priority) => {
 projectForm.addEventListener('submit', e => {
     e.preventDefault();
     let data = new FormData(e.target);
-    const createdProject = new Project(projectArray[0]._id + 1, data.get("project-name"));
+    let projectId = 0;
+
+    if (projectArray.length != 0) {
+        projectId = projectArray[0]._id + 1;
+    }
+    const createdProject = new Project(projectId, data.get("project-name"));
+
     Storage.saveProject(createdProject);
     Dom.createProject(createdProject);
+    projectArray.push(createdProject);
+    Storage.sortById(projectArray);
     projectForm.reset();
     projectForm.classList.remove("showModal");
     Dom.removeUnclickable();
@@ -209,6 +218,7 @@ bottom.addEventListener("click", (event) => {
 });
 
 deleteButton.addEventListener("click", () => {
+    console.log("delete clicked");
     Dom.deleteTodoContainer(todoIdGlobal);
     for (let a = 0; a < todoArray.length; a++) {
         if (todoArray[a]._id == todoIdGlobal) {
@@ -226,6 +236,7 @@ for (let a = 0; a < projects.length; a++) {
         if (event.target.classList.contains("projectClick")) {
             const project = event.target.textContent.substring(0);
             globalProject = project;
+            globalProjectId = event.target.id.substring(6);
             Dom.clearBottomDom(todoArray);
             bottomName.textContent = project.toUpperCase();
             populateBottomByProject(project);
@@ -266,8 +277,13 @@ const populateBottomByProject = (projectName) => {
     }
 }
 
-deleteProject.addEventListener("click", () =>{
-    console.log(globalProject);
+deleteProject.addEventListener("click", () => {
+    //remove todos and project from arrays
+    //call all todos
+
+    //Dom.clearBottomByProject(todoArray,globalProject);
+    //Storage.deleteProject(globalProject);
+    //Dom.removeProjectFromNav(globalProjectId);
 });
 
 window.addEventListener("resize", function () {

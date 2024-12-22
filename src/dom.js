@@ -146,7 +146,8 @@ class Dom {
     for (let a = 0; a < projectFolder.length; a++) {
       const iconName = document.createElement("div");
       iconName.classList.add("iconName");
-
+      iconName.id = "icon-name" + project.id.toString();
+  
       const iconImage = document.createElement("img");
       iconImage.classList.add("iconImage");
       iconImage.src = folderIcon;
@@ -173,11 +174,28 @@ class Dom {
     }
   }
 
+  static removeProjectFromNav = (projectId) => {
+    const projectFolder = document.querySelectorAll(".projects");
+    const iconName = document.getElementById("icon-name" + projectId.toString());
+
+    for (let a = 0; a < projectFolder.length; a++) {
+      if(iconName!=null){
+        projectFolder[a].removeChild(iconName);
+      }
+    }
+  }
+
   static addProjectToDropDown = (project) => {
     const projectOption = document.createElement("option");
     projectOption.value = project.name;
     projectOption.textContent = project.name.toLowerCase();
+    projectOption.id = "opt" + project.id.toString();
     projectValue.appendChild(projectOption);
+  }
+
+  static removeProjectFromDropDown = (project) => {
+      const projectOption = document.getElementById("opt" + project.id.toString());
+      projectValue.removeChild(projectOption);
   }
 
   static todoCheckbox = (todo) => {
@@ -247,6 +265,17 @@ class Dom {
       const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
       if (todoContainer != null) {
         bottom.removeChild(todoContainer);
+      }
+    }
+  }
+
+  static clearBottomByProject = (todoArray, projectName) => {
+    for (let a = 0; a < todoArray.length; a++) {
+      const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
+      if (todoContainer != null &&
+        todoArray[a]._project.toString().toLowerCase() == projectName.toString().toLowerCase()) {
+        bottom.removeChild(todoContainer);
+        Storage.deleteTodo(todoArray[a]);
       }
     }
   }
