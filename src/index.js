@@ -22,6 +22,7 @@ const deleteButton = document.querySelector(".deleteButton");
 const projects = document.querySelectorAll(".projects");
 const allTodos = document.querySelectorAll(".all");
 const bottomName = document.querySelector(".project-name-bottom");
+const deleteProject = document.querySelector(".deleteProject");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -30,7 +31,7 @@ let todoIdGlobal = 0;
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
-    console.log(todoArray);
+    deleteProject.classList.add("hide");
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -227,6 +228,7 @@ for (let a = 0; a < projects.length; a++) {
             Dom.clearBottomDom(todoArray);
             bottomName.textContent = project.toUpperCase();
             populateBottomByProject(project);
+            deleteProject.classList.remove("hide");
         }
     });
 }
@@ -234,6 +236,7 @@ for (let a = 0; a < projects.length; a++) {
 for (let a = 0; a < allTodos.length; a++) {
     allTodos[a].addEventListener("click", () => {
         bottomName.textContent = "ALL TODO's";
+        deleteProject.classList.add("hide");
         Dom.clearBottomDom(todoArray);
         for (let a = 0; a < todoArray.length; a++) {
             const todoObject = todoArray[a];
