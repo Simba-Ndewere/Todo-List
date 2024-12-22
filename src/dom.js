@@ -166,7 +166,7 @@ class Dom {
   static addProjectToDropDown = (project) => {
     const projectOption = document.createElement("option");
     projectOption.value = project.name;
-    projectOption.textContent = project.name;
+    projectOption.textContent = project.name.toLowerCase();
     projectValue.appendChild(projectOption);
   }
 
@@ -235,15 +235,11 @@ class Dom {
   static clearBottomDom = (todoArray) => {
     for (let a = 0; a < todoArray.length; a++) {
       const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
-      if (todoContainer!=null) {
+      if (todoContainer != null) {
         bottom.removeChild(todoContainer);
       }
-
     }
   }
-
-
-
 }
 
 export default Dom;

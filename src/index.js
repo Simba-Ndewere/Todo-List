@@ -30,6 +30,7 @@ let todoIdGlobal = 0;
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
+    console.log(todoArray);
     for (let a = 0; a < todoArray.length; a++) {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -60,6 +61,7 @@ addToDo.addEventListener('click', function () {
 });
 
 addProject.addEventListener('click', function () {
+    console.log(localStorage);
     projectForm.classList.add("showModal");
     Dom.addUnclickable();
 });
@@ -113,12 +115,15 @@ const createOrUpdate = (e, priority) => {
     if (modalButton.textContent == 'SUBMIT') {
         error.innerText = "";
         let data = new FormData(e.target);
-        let keyCount = localStorage.length;
-        const createdTodo = new Todo(keyCount + 1, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+        let todoIdentification = 0;
+        if (todoArray.length!=0) {
+            todoIdentification = todoArray[0]._id + 1;
+        }
+        const createdTodo = new Todo(todoIdentification, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
         Storage.saveTodo(createdTodo);
         Dom.createTodo(createdTodo);
         todoArray.push(createdTodo);
-
+        console.log("object pushed at the end" + createdTodo);
         form.reset();
         modal.classList.remove("showModal");
         Dom.removeUnclickable();
@@ -241,7 +246,7 @@ for (let a = 0; a < allTodos.length; a++) {
 
 const populateBottomByProject = (projectName) => {
     for (let a = 0; a < todoArray.length; a++) {
-        if (todoArray[a]._project == projectName) {
+        if (todoArray[a]._project.toUpperCase() == projectName.toUpperCase()) {
             const todoObject = todoArray[a];
             const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
                 todoObject._priority, todoObject._project, todoObject._completed);
