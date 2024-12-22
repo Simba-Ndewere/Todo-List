@@ -28,6 +28,7 @@ const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
 
 let todoIdGlobal = 0;
+let globalProject = "";
 
 const loadStorage = () => {
     Storage.loadLocalStorage();
@@ -161,8 +162,7 @@ const createOrUpdate = (e, priority) => {
 projectForm.addEventListener('submit', e => {
     e.preventDefault();
     let data = new FormData(e.target);
-    let keyCount = localStorage.length;
-    const createdProject = new Project(keyCount + 1, data.get("project-name"));
+    const createdProject = new Project(projectArray[0]._id + 1, data.get("project-name"));
     Storage.saveProject(createdProject);
     Dom.createProject(createdProject);
     projectForm.reset();
@@ -225,6 +225,7 @@ for (let a = 0; a < projects.length; a++) {
     projects[a].addEventListener("click", (event) => {
         if (event.target.classList.contains("projectClick")) {
             const project = event.target.textContent.substring(0);
+            globalProject = project;
             Dom.clearBottomDom(todoArray);
             bottomName.textContent = project.toUpperCase();
             populateBottomByProject(project);
@@ -264,6 +265,10 @@ const populateBottomByProject = (projectName) => {
         }
     }
 }
+
+deleteProject.addEventListener("click", () =>{
+    console.log(globalProject);
+});
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
