@@ -23,6 +23,7 @@ const projects = document.querySelectorAll(".projects");
 const allTodos = document.querySelectorAll(".all");
 const bottomName = document.querySelector(".project-name-bottom");
 const deleteProject = document.querySelector(".deleteProject");
+const todoProject = document.querySelector(".project-value");
 
 const todoArray = Storage.getSortedTodoArray();
 const projectArray = Storage.getSortedProjectsArray();
@@ -60,6 +61,10 @@ addToDo.addEventListener('click', function () {
     modalTitle.textContent = "CREATE TODO";
     modalButton.textContent = "SUBMIT";
     deleteButton.classList.add("hide");
+    if (bottomName.textContent.toString().toLowerCase() != "ALL TODO's".toLowerCase()) {
+        todoProject.value = globalProject.toString().toLowerCase();
+        todoProject.disabled = true;
+    }
     Dom.addUnclickable();
 });
 
@@ -118,10 +123,17 @@ const createOrUpdate = (e, priority) => {
         error.innerText = "";
         let data = new FormData(e.target);
         let todoIdentification = 0;
+        let projectSubmit = data.get("project-folder");
+        
         if (todoArray.length != 0) {
             todoIdentification = todoArray[0]._id + 1;
         }
-        const createdTodo = new Todo(todoIdentification, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+
+        if (todoProject.disabled) {
+            projectSubmit = globalProject.toString().toLowerCase();
+        }
+
+        const createdTodo = new Todo(todoIdentification, data.get("todo"), data.get("description"), data.get("date"), priority, projectSubmit, false);
         Storage.saveTodo(createdTodo);
         Dom.createTodo(createdTodo);
         todoArray.push(createdTodo);
@@ -168,7 +180,7 @@ projectForm.addEventListener('submit', e => {
     if (projectArray.length != 0) {
         projectId = projectArray[0]._id + 1;
     }
-    const createdProject = new Project(projectId, data.get("project-name"));
+    const createdProject = new Project(projectId, data.get("project-name").toLowerCase());
 
     Storage.saveProject(createdProject);
     Dom.createProject(createdProject);
@@ -218,7 +230,6 @@ bottom.addEventListener("click", (event) => {
 });
 
 deleteButton.addEventListener("click", () => {
-    console.log("delete clicked");
     Dom.deleteTodoContainer(todoIdGlobal);
     for (let a = 0; a < todoArray.length; a++) {
         if (todoArray[a]._id == todoIdGlobal) {
@@ -250,6 +261,7 @@ for (let a = 0; a < allTodos.length; a++) {
         bottomName.textContent = "ALL TODO's";
         deleteProject.classList.add("hide");
         Dom.clearBottomDom(todoArray);
+        todoProject.disabled = false;
         for (let a = 0; a < todoArray.length; a++) {
             const todoObject = todoArray[a];
             const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
@@ -281,8 +293,9 @@ deleteProject.addEventListener("click", () => {
     //remove todos and project from arrays
     //call all todos
 
-    //Dom.clearBottomByProject(todoArray,globalProject);
-    //Storage.deleteProject(globalProject);
+    Dom.clearBottomByProject(todoArray, globalProject);
+    console.log(globalProjectId);
+    Storage.deleteProjectById(globalProjectId);
     //Dom.removeProjectFromNav(globalProjectId);
 });
 

@@ -147,7 +147,7 @@ class Dom {
       const iconName = document.createElement("div");
       iconName.classList.add("iconName");
       iconName.id = "icon-name" + project.id.toString();
-  
+
       const iconImage = document.createElement("img");
       iconImage.classList.add("iconImage");
       iconImage.src = folderIcon;
@@ -179,7 +179,7 @@ class Dom {
     const iconName = document.getElementById("icon-name" + projectId.toString());
 
     for (let a = 0; a < projectFolder.length; a++) {
-      if(iconName!=null){
+      if (iconName != null) {
         projectFolder[a].removeChild(iconName);
       }
     }
@@ -194,8 +194,8 @@ class Dom {
   }
 
   static removeProjectFromDropDown = (project) => {
-      const projectOption = document.getElementById("opt" + project.id.toString());
-      projectValue.removeChild(projectOption);
+    const projectOption = document.getElementById("opt" + project.id.toString());
+    projectValue.removeChild(projectOption);
   }
 
   static todoCheckbox = (todo) => {
@@ -217,6 +217,7 @@ class Dom {
     const todoDescription = document.querySelector(".todo-description");
     const todoDate = document.querySelector(".todo-date");
     const todoProject = document.querySelector(".project-value");
+    todoProject.disabled = false;
 
     if (todo._priority == 'low') {
       const priorityView = document.getElementById("dot-1");
