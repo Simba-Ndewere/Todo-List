@@ -290,14 +290,17 @@ const populateBottomByProject = (projectName) => {
 }
 
 deleteProject.addEventListener("click", () => {
-    //remove project from arrays
     //call all todos after deleting project
     //remove project from dropdown
 
     Dom.clearBottomByProject(todoArray, globalProject);
     Storage.deleteProjectById(globalProjectId);
-    Dom.removeProjectFromNav(globalProjectId,projectArray);
+    Dom.removeProjectFromNav(globalProjectId, projectArray);
     Dom.removeProjectFromDropDown(globalProjectId);
+
+    for (let a = 0; a < allTodos.length; a++) {
+        allTodos[a].click(); 
+    }
 });
 
 window.addEventListener("resize", function () {
