@@ -114,73 +114,79 @@ form.addEventListener('submit', e => {
     if (!checked) {
         error.innerText = "please enter priority"
     } else {
-        createOrUpdate(e, priority);
+        //createOrUpdate(e, priority);
+        if (modalButton.textContent == 'SUBMIT') {
+            createTodoForm(e, priority);
+        } else {
+            updateTodoForm(e, priority);
+        }
     }
 });
 
-const createOrUpdate = (e, priority) => {
-    if (modalButton.textContent == 'SUBMIT') {
-        error.innerText = "";
-        let data = new FormData(e.target);
-        let todoIdentification = 0;
-        let projectSubmit = data.get("project-folder");
+const createTodoForm = (e, priority) => {
 
-        if (todoArray.length != 0) {
-            todoIdentification = todoArray[0]._id + 1;
-        }
+    error.innerText = "";
+    let data = new FormData(e.target);
+    let todoIdentification = 0;
+    let projectSubmit = data.get("project-folder");
 
-        if (todoProject.disabled) {
-            projectSubmit = globalProject.toString().toLowerCase();
-        }
-
-        const createdTodo = new Todo(todoIdentification, data.get("todo"),
-            data.get("description"), data.get("date"), priority, projectSubmit, false);
-        Storage.saveTodo(createdTodo);
-        Dom.createTodo(createdTodo);
-        todoArray.push(createdTodo);
-        Storage.sortById(todoArray);
-        form.reset();
-        modal.classList.remove("showModal");
-        Dom.removeUnclickable();
-    } else {
-        error.innerText = "";
-        let data = new FormData(e.target);
-
-        let checkedCurrent = false;
-
-        for (let a = 0; a < todoArray.length; a++) {
-            if (todoArray[a]._id == todoIdGlobal) {
-                checkedCurrent = todoArray[a]._completed;
-                break;
-            }
-        }
-
-        const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"),
-            data.get("date"), priority, data.get("project-folder"), checkedCurrent);
-        Dom.updateToDoContainer(updatedTodo);
-        Storage.deleteTodo(updatedTodo);
-        Storage.saveTodo(updatedTodo);
-
-        for (let a = 0; a < todoArray.length; a++) {
-            if (todoArray[a]._id == updatedTodo.id) {
-                if (data.get("project-folder").toLowerCase() != todoArray[a]._project.toLowerCase()
-                    && bottomName.textContent.toString().toLowerCase() != "ALL TODO's".toLowerCase()) {
-                    const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
-                    bottom.removeChild(todoContainer);
-                }
-
-                todoArray[a]._title = updatedTodo.title;
-                todoArray[a]._description = updatedTodo.description;
-                todoArray[a]._dueDate = updatedTodo.dueDate;
-                todoArray[a]._priority = priority;
-                todoArray[a]._project = updatedTodo.project;
-                break;
-            }
-        }
-        form.reset();
-        modal.classList.remove("showModal");
-        Dom.removeUnclickable();
+    if (todoArray.length != 0) {
+        todoIdentification = todoArray[0]._id + 1;
     }
+
+    if (todoProject.disabled) {
+        projectSubmit = globalProject.toString().toLowerCase();
+    }
+
+    const createdTodo = new Todo(todoIdentification, data.get("todo"),
+        data.get("description"), data.get("date"), priority, projectSubmit, false);
+    Storage.saveTodo(createdTodo);
+    Dom.createTodo(createdTodo);
+    todoArray.push(createdTodo);
+    Storage.sortById(todoArray);
+    form.reset();
+    modal.classList.remove("showModal");
+    Dom.removeUnclickable();
+
+}
+
+const updateTodoForm = (e,priority) => {
+    error.innerText = "";
+    let data = new FormData(e.target);
+    let checkedCurrent = false;
+
+    for (let a = 0; a < todoArray.length; a++) {
+        if (todoArray[a]._id == todoIdGlobal) {
+            checkedCurrent = todoArray[a]._completed;
+            break;
+        }
+    }
+
+    const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"),
+        data.get("date"), priority, data.get("project-folder"), checkedCurrent);
+    Dom.updateToDoContainer(updatedTodo);
+    Storage.deleteTodo(updatedTodo);
+    Storage.saveTodo(updatedTodo);
+
+    for (let a = 0; a < todoArray.length; a++) {
+        if (todoArray[a]._id == updatedTodo.id) {
+            if (data.get("project-folder").toLowerCase() != todoArray[a]._project.toLowerCase()
+                && bottomName.textContent.toString().toLowerCase() != "ALL TODO's".toLowerCase()) {
+                const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
+                bottom.removeChild(todoContainer);
+            }
+
+            todoArray[a]._title = updatedTodo.title;
+            todoArray[a]._description = updatedTodo.description;
+            todoArray[a]._dueDate = updatedTodo.dueDate;
+            todoArray[a]._priority = priority;
+            todoArray[a]._project = updatedTodo.project;
+            break;
+        }
+    }
+    form.reset();
+    modal.classList.remove("showModal");
+    Dom.removeUnclickable();
 }
 
 projectForm.addEventListener('submit', e => {
