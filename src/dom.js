@@ -141,9 +141,10 @@ class Dom {
   }
 
   static createProject = (project) => {
-    const projectFolder = document.querySelectorAll(".projects");
+    const leftNav = document.getElementById("left-nav");
+    const sideNav = document.getElementById("side-nav");
 
-    for (let a = 0; a < projectFolder.length; a++) {
+    for (let a = 0; a < 2; a++) {
       const iconName = document.createElement("div");
       iconName.classList.add("iconName");
       iconName.id = "icon-name" + project.id.toString();
@@ -155,6 +156,7 @@ class Dom {
       const newProject = document.createElement("div");
       newProject.textContent = project.name.toLowerCase();
       newProject.classList.add("projectClick");
+      newProject.id = "projId" + project.id.toString();
 
       newProject.addEventListener('mouseenter', () => {
         newProject.style.fontSize = "23px";
@@ -169,18 +171,11 @@ class Dom {
 
       iconName.appendChild(iconImage);
       iconName.appendChild(newProject);
-      projectFolder[a].appendChild(iconName);
 
-    }
-  }
-
-  static removeProjectFromNav = (projectId) => {
-    const projectFolder = document.querySelectorAll(".projects");
-    const iconName = document.getElementById("icon-name" + projectId.toString());
-
-    for (let a = 0; a < projectFolder.length; a++) {
-      if (iconName != null) {
-        projectFolder[a].removeChild(iconName);
+      if(a==0){
+        leftNav.appendChild(iconName);
+      }else{
+        sideNav.appendChild(iconName);
       }
     }
   }
@@ -193,8 +188,8 @@ class Dom {
     projectValue.appendChild(projectOption);
   }
 
-  static removeProjectFromDropDown = (project) => {
-    const projectOption = document.getElementById("opt" + project.id.toString());
+  static removeProjectFromDropDown = (projectId) => {
+    const projectOption = document.getElementById("opt" + projectId.toString());
     projectValue.removeChild(projectOption);
   }
 
@@ -271,15 +266,40 @@ class Dom {
   }
 
   static clearBottomByProject = (todoArray, projectName) => {
-    for (let a = 0; a < todoArray.length; a++) {
+    for (let a = todoArray.length-1; a >=0; a--) {
       const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
       if (todoContainer != null &&
         todoArray[a]._project.toString().toLowerCase() == projectName.toString().toLowerCase()) {
         bottom.removeChild(todoContainer);
         Storage.deleteTodo(todoArray[a]);
+        todoArray.splice(a, 1);
       }
     }
   }
+
+  static removeProjectFromNav = (projectId, projectArray) => {
+    const leftNav = document.getElementById("left-nav");
+    const sideNav = document.getElementById("side-nav");
+
+    for (let a = 0; a < 2; a++) {
+      const iconName = document.getElementById("icon-name" + projectId.toString());
+      if (iconName != null && a == 0) {
+        leftNav.removeChild(iconName);
+      }
+
+      if (iconName != null && a == 1) {
+        sideNav.removeChild(iconName);
+      }
+    }
+
+    for (let a = 0; a < projectArray; a++) {
+      if (projectArray[a]._id == projectId) {
+        projectArray.splice(a, 1);
+      }
+    }
+
+  }
+
 }
 
 export default Dom;

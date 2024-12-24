@@ -545,6 +545,14 @@ div span.priority {
         min-width: 80%;
     }
 
+    .btnSubmit {
+        width: 34%;
+    }
+
+    .btnSubmit:hover {
+        width: 36%;
+    }
+
 }
 
 @media (max-width: 767px) {

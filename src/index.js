@@ -124,7 +124,7 @@ const createOrUpdate = (e, priority) => {
         let data = new FormData(e.target);
         let todoIdentification = 0;
         let projectSubmit = data.get("project-folder");
-        
+
         if (todoArray.length != 0) {
             todoIdentification = todoArray[0]._id + 1;
         }
@@ -290,18 +290,20 @@ const populateBottomByProject = (projectName) => {
 }
 
 deleteProject.addEventListener("click", () => {
-    //remove todos and project from arrays
-    //call all todos
+    //remove project from arrays
+    //call all todos after deleting project
+    //remove project from dropdown
 
     Dom.clearBottomByProject(todoArray, globalProject);
-    console.log(globalProjectId);
     Storage.deleteProjectById(globalProjectId);
-    //Dom.removeProjectFromNav(globalProjectId);
+    Dom.removeProjectFromNav(globalProjectId,projectArray);
+    Dom.removeProjectFromDropDown(globalProjectId);
 });
 
 window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
         document.querySelector(".sidenav").style.width = "0";
+        Dom.removeUnclickable();
     }
 });
 
