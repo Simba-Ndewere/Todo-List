@@ -222,7 +222,7 @@ bottom.addEventListener("click", (event) => {
         const todoId = Number(event.target.id.substring(1));
         for (let a = 0; a < todoArray.length; a++) {
             if (todoArray[a]._id == todoId) {
-                Dom.completeTodo(todoArray[a], event);
+                Dom.completeTodo(todoArray[a], event, todoArray);
                 break;
             }
         }
@@ -290,16 +290,13 @@ const populateBottomByProject = (projectName) => {
 }
 
 deleteProject.addEventListener("click", () => {
-    //call all todos after deleting project
-    //remove project from dropdown
-
     Dom.clearBottomByProject(todoArray, globalProject);
     Storage.deleteProjectById(globalProjectId);
     Dom.removeProjectFromNav(globalProjectId, projectArray);
     Dom.removeProjectFromDropDown(globalProjectId);
 
     for (let a = 0; a < allTodos.length; a++) {
-        allTodos[a].click(); 
+        allTodos[a].click();
     }
 });
 

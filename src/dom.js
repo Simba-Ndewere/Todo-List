@@ -108,7 +108,7 @@ class Dom {
 
   }
 
-  static completeTodo = (todo, event) => {
+  static completeTodo = (todo, event, todoArray) => {
 
     const title = document.getElementById("title" + todo._id.toString());
     const newToDo = new Todo(todo._id, todo._title, todo._description, todo._dueDate, todo._priority, todo._project, event.target.checked);
@@ -116,6 +116,14 @@ class Dom {
       title.classList.add("completed");
       Storage.deleteTodo(todo);
       Storage.saveTodo(newToDo);
+
+      for (let a = 0; a < todoArray.length; a++) {
+        if (todoArray[a]._id == todo._id) {
+          todoArray[a]._completed = true;
+          break;
+        }
+      }
+
       const priority = document.getElementById("priority" + todo._id.toString());
       priority.style.backgroundColor = "gray";
     } else {
@@ -124,6 +132,13 @@ class Dom {
       Storage.saveTodo(newToDo);
 
       const priorityTodo = document.getElementById("priority" + todo._id.toString());
+
+      for (let a = 0; a < todoArray.length; a++) {
+        if (todoArray[a]._id == todo._id) {
+          todoArray[a]._completed = false;
+          break;
+        }
+      }
 
       if (todo._priority == "low") {
         priorityTodo.style.backgroundColor = "green";
@@ -172,9 +187,9 @@ class Dom {
       iconName.appendChild(iconImage);
       iconName.appendChild(newProject);
 
-      if(a==0){
+      if (a == 0) {
         leftNav.appendChild(iconName);
-      }else{
+      } else {
         sideNav.appendChild(iconName);
       }
     }
@@ -266,7 +281,7 @@ class Dom {
   }
 
   static clearBottomByProject = (todoArray, projectName) => {
-    for (let a = todoArray.length-1; a >=0; a--) {
+    for (let a = todoArray.length - 1; a >= 0; a--) {
       const todoContainer = document.getElementById("cont" + todoArray[a]._id.toString());
       if (todoContainer != null &&
         todoArray[a]._project.toString().toLowerCase() == projectName.toString().toLowerCase()) {
