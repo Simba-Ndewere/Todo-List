@@ -515,6 +515,18 @@ div span.priority {
     width: 28px;
 }
 
+.todoListImage {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.todoListImage img {
+    width: 60px;
+    height: 60px;
+    padding-bottom: 5px;
+}
+
 /* Tablet design */
 @media (max-width: 1280px) {
     .container {
