@@ -114,7 +114,6 @@ form.addEventListener('submit', e => {
     if (!checked) {
         error.innerText = "please enter priority"
     } else {
-        //createOrUpdate(e, priority);
         if (modalButton.textContent == 'SUBMIT') {
             createTodoForm(e, priority);
         } else {
@@ -150,7 +149,7 @@ const createTodoForm = (e, priority) => {
 
 }
 
-const updateTodoForm = (e,priority) => {
+const updateTodoForm = (e, priority) => {
     error.innerText = "";
     let data = new FormData(e.target);
     let checkedCurrent = false;
@@ -269,6 +268,11 @@ for (let a = 0; a < projects.length; a++) {
             bottomName.textContent = project.toUpperCase();
             populateBottomByProject(project);
             deleteProject.classList.remove("hide");
+
+            if (document.querySelector(".sidenav").style.width != "0") {
+                document.querySelector(".sidenav").style.width = "0";
+                Dom.removeUnclickable();
+            }
         }
     });
 }
