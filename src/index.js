@@ -133,7 +133,8 @@ const createOrUpdate = (e, priority) => {
             projectSubmit = globalProject.toString().toLowerCase();
         }
 
-        const createdTodo = new Todo(todoIdentification, data.get("todo"), data.get("description"), data.get("date"), priority, projectSubmit, false);
+        const createdTodo = new Todo(todoIdentification, data.get("todo"),
+            data.get("description"), data.get("date"), priority, projectSubmit, false);
         Storage.saveTodo(createdTodo);
         Dom.createTodo(createdTodo);
         todoArray.push(createdTodo);
@@ -144,7 +145,18 @@ const createOrUpdate = (e, priority) => {
     } else {
         error.innerText = "";
         let data = new FormData(e.target);
-        const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"), data.get("date"), priority, data.get("project-folder"), false);
+
+        let checkedCurrent = false;
+
+        for (let a = 0; a < todoArray.length; a++) {
+            if (todoArray[a]._id == todoIdGlobal) {
+                checkedCurrent = todoArray[a]._completed;
+                break;
+            }
+        }
+
+        const updatedTodo = new Todo(todoIdGlobal, data.get("todo"), data.get("description"),
+            data.get("date"), priority, data.get("project-folder"), checkedCurrent);
         Dom.updateToDoContainer(updatedTodo);
         Storage.deleteTodo(updatedTodo);
         Storage.saveTodo(updatedTodo);
@@ -162,7 +174,6 @@ const createOrUpdate = (e, priority) => {
                 todoArray[a]._dueDate = updatedTodo.dueDate;
                 todoArray[a]._priority = priority;
                 todoArray[a]._project = updatedTodo.project;
-                todoArray[a]._completed = updatedTodo.completed;
                 break;
             }
         }
