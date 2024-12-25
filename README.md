@@ -1,1 +1,1 @@
-Todo-List utilising html, css and javascript, live on https://simba-ndewere.github.io/Todo-List/ application was completed following the following steps https://www.theodinproject.com/lessons/node-path-javascript-todo-list#project-solution
+Todo-List utilising html, css and javascript, live on https://simba-ndewere.github.io/Todo-List/ application was completed following these steps https://www.theodinproject.com/lessons/node-path-javascript-todo-list#project-solution
