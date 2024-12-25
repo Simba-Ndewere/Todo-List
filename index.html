@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+<script defer src="main.js"></script></head>
+
+<body>
+    <div class="container">
+        <section class="left">
+            <nav>
+                <ul>
+                    <li class="all"> ALL TODO's</li>
+                </ul>
+                <section class="projects" id="left-nav">
+                    <div class="projects-sign">
+                        <section class="project-name">FOLDERS</section>
+                        <div class="sign">
+                            <img class="projectCreate" src="132696644e79a1f05c3b.png">
+                        </div>
+                    </div>
+                </section>
+            </nav>
+        </section>
+        <div class="right">
+            <div class="sidenav">
+                <section class="slide">
+                    <div class="closebtn">&times;</div>
+                    <nav>
+                        <ul>
+                            <li class="all"> ALL TODO's </li>
+                        </ul>
+                        <section class="projects" id="side-nav">
+                            <div class="projects-sign">
+                                <section class="project-name">FOLDERS</section>
+                                <div class="sign">
+                                    <img class="projectCreateNav" src="132696644e79a1f05c3b.png">
+                                </div>
+                            </div>
+                        </section>
+                    </nav>
+                </section>
+            </div>
+
+            <section class="top">
+                <img src="5bad88a4b8de85b4db41.png" class="nav-icon">
+                <div class="todoListImage">
+                    <img src="daddab8bf9c922a926ea.png" class="todoImageHead">
+                    <div class="title">Study Planner</div>
+                </div>
+            </section>
+            <section class="bottom">
+                <div class="name-sign">
+                    <div class="sign-name-div">
+                        <div class="project-name-bottom">ALL TODO's</div>
+                        <div class="sign">
+                            <img class="signCreate" src="132696644e79a1f05c3b.png">
+                        </div>
+                    </div>
+                    <div class="deleteProject">
+                        <img class="deleteProject" src="ee4b58337bd3477db466.png">
+                    </div>
+                </div>
+
+            </section>
+
+            <form class="modal-container">
+                <section class="box">
+                    <div class="modal-title">CREATE TODO</div>
+                    <div class="close">&times;</div>
+
+                    <div class="modal-box">
+                        <div>
+                            <label class="details" for="todo-title">Todo</label>
+                            <input type="text" name="todo" class="todo-title" maxlength="20" required="required">
+                        </div>
+                        <div>
+                            <label class="details" for="todo-description">Description</label>
+                            <input type="text" name="description" class="todo-description" maxlength="38" required="required">
+                        </div>
+                        <div>
+                            <label class="details" for="todo-date">Due date</label>
+                            <input type="date" name="date" class="todo-date" required="required">
+                        </div>
+                        <div>
+                            <label class="details" for="project-folder">Project</label>
+                            <select name="project-folder" class="project-value">
+                                <option value="default">all todo's</option>
+                            </select>
+                        </div>
+                        <div class="priority-details">
+                            <input type="radio" name="priority-radio" id="dot-1">
+                            <input type="radio" name="priority-radio" id="dot-2">
+                            <input type="radio" name="priority-radio" id="dot-3">
+                            <span class="details">Priority</span>
+                            <div class="error"></div>
+                            <div class="category">
+                                <label for="dot-1">
+                                    <span class="dot one"></span>
+                                    <span class="priority">Low</span>
+                                </label>
+                                <label for="dot-2">
+                                    <span class="dot two"></span>
+                                    <span class="priority">Medium</span>
+                                </label>
+                                <label for="dot-3">
+                                    <span class="dot three"></span>
+                                    <span class="priority">High</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="submit-delete">
+                            <button type="submit" class="btnSubmit">Submit</button>
+                            <img class="deleteButton" src="ee4b58337bd3477db466.png">
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+            <form class="project-container">
+                <section class="box">
+                    <div class="modal-title">CREATE PROJECT</div>
+                    <div class="closeProject">&times;</div>
+
+                    <div class="modal-box">
+                        <div>
+                            <label class="details" for="todo-title">Name</label>
+                            <input type="text" name="project-name" class="project-name" maxlength="15" required="required">
+                        </div>
+                        <button type="submit" class="btnSubmit">Submit</button>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
