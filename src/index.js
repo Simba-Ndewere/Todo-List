@@ -32,6 +32,7 @@ let todoIdGlobal = 0;
 let globalProject = "";
 let globalProjectId = 0;
 
+
 const loadStorage = () => {
     Storage.loadLocalStorage();
     deleteProject.classList.add("hide");
@@ -39,6 +40,7 @@ const loadStorage = () => {
         const todoObject = todoArray[a];
         const todo = new Todo(todoObject._id, todoObject._title, todoObject._description, todoObject._dueDate,
             todoObject._priority, todoObject._project, todoObject._completed);
+            console.log(todoObject);
 
         Dom.createTodo(todo);
         if (todo.completed) {
@@ -130,7 +132,7 @@ const createTodoForm = (e, priority) => {
     let projectSubmit = data.get("project-folder");
 
     if (todoArray.length != 0) {
-        todoIdentification = todoArray[0]._id + 1;
+        todoIdentification = todoArray[todoArray.length-1]._id + 1;
     }
 
     if (todoProject.disabled) {
@@ -139,6 +141,7 @@ const createTodoForm = (e, priority) => {
 
     const createdTodo = new Todo(todoIdentification, data.get("todo"),
         data.get("description"), data.get("date"), priority, projectSubmit, false);
+        console.log(createdTodo);
     Storage.saveTodo(createdTodo);
     Dom.createTodo(createdTodo);
     todoArray.push(createdTodo);
@@ -194,10 +197,10 @@ projectForm.addEventListener('submit', e => {
     let projectId = 0;
 
     if (projectArray.length != 0) {
-        projectId = projectArray[0]._id + 1;
+        projectId = projectArray[projectArray.length-1]._id + 1;
     }
     const createdProject = new Project(projectId, data.get("project-name").toLowerCase());
-
+    console.log(createdProject);
     Storage.saveProject(createdProject);
     Dom.createProject(createdProject);
     projectArray.push(createdProject);
