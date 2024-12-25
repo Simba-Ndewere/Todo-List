@@ -295,6 +295,11 @@ for (let a = 0; a < allTodos.length; a++) {
             if (todo.completed) {
                 Dom.todoCheckbox(todo);
             }
+
+            if (document.querySelector(".sidenav").style.width != "0") {
+                document.querySelector(".sidenav").style.width = "0";
+                Dom.removeUnclickable();
+            }
         }
     });
 }
