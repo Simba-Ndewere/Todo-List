@@ -11,6 +11,6 @@ The project is part of The Odin Project's JavaScript curriculum. You can view th
 - Store tasks in local storage to persist data across sessions
 
 ## Technologies Used
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
