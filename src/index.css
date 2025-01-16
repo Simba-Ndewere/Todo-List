@@ -136,7 +136,7 @@ input[type="radio"] {
     background-color: white;
     border-radius: 25px;
     width: 80%;
-    min-height: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     font-family: 'Quicksand', sans-serif;
