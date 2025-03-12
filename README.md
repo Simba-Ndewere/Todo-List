@@ -14,3 +14,4 @@ The project is part of The Odin Project's JavaScript curriculum. You can view th
 - HTML
 - CSS
 - JavaScript
+- Webpack
